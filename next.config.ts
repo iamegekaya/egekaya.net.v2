@@ -1,13 +1,16 @@
 import type { NextConfig } from "next";
 
 /**
- * Flip to false to enforce the policy instead of only reporting on it.
+ * The policy is enforced rather than report-only. Checked against a production
+ * build with this set to false: no console violations on /, /about,
+ * /cyber-security, /photography or /contact, every gallery image still loading
+ * through /_next/image, and the contact POST still reaching the mail step.
  *
- * Ship in report-only first: violations show up in the browser console without
- * breaking anything, so a missed directive costs a console message rather than
- * a blank page.
+ * Flip back to true before adding anything cross-origin (an analytics script,
+ * a webfont, an embedded map): report-only turns a blank page into a console
+ * message while the new directive is worked out.
  */
-const CSP_REPORT_ONLY = true;
+const CSP_REPORT_ONLY = false;
 
 /**
  * Every asset this site loads is same-origin: no third-party scripts, no
