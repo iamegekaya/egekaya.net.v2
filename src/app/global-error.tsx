@@ -19,9 +19,9 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
           placeContent: "center",
           gap: "1.5rem",
           padding: "2rem",
-          background: "#050505",
-          color: "#f5f7f2",
-          fontFamily: '"IBM Plex Sans", "Segoe UI", sans-serif',
+          background: "#121414",
+          color: "#e3e2e2",
+          fontFamily: '"SFMono-Regular", Consolas, monospace',
           textAlign: "center",
         }}
       >
@@ -32,7 +32,7 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
             fontWeight: 700,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#8bf5c7",
+            color: "#72ff70",
           }}
         >
           Something Went Wrong
@@ -40,12 +40,12 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
         <h1 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3rem)", lineHeight: 1.05 }}>
           The site failed to load
         </h1>
-        <p style={{ margin: 0, lineHeight: 1.7, color: "rgba(245, 247, 242, 0.76)" }}>
+        <p style={{ margin: 0, lineHeight: 1.7, color: "#b9ccb2" }}>
           Please try again. If the problem persists, come back in a few minutes.
         </p>
 
         {error.digest ? (
-          <p style={{ margin: 0, fontSize: "0.82rem", color: "rgba(245, 247, 242, 0.34)" }}>
+          <p style={{ margin: 0, fontSize: "0.82rem", color: "rgba(227, 226, 226, 0.4)" }}>
             Reference: {error.digest}
           </p>
         ) : null}
@@ -56,10 +56,10 @@ export default function GlobalError({ error, reset }: GlobalErrorProps) {
           style={{
             justifySelf: "center",
             padding: "0.75rem 1.25rem",
-            borderRadius: "1rem",
-            border: "1px solid rgba(65, 176, 110, 0.34)",
-            background: "rgba(65, 176, 110, 0.16)",
-            color: "#f5f7f2",
+            borderRadius: "0.25rem",
+            border: "1px solid #72ff70",
+            background: "rgba(114, 255, 112, 0.12)",
+            color: "#e3e2e2",
             font: "inherit",
             fontWeight: 500,
             cursor: "pointer",

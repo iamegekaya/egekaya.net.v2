@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import SplitReveal from "@/components/about/split-reveal";
+
 import ContactForm from "@/components/contact/contact-form";
-import GlassPanel from "@/components/ui/glass-panel";
+import { ArrowForwardIcon, KeyIcon } from "@/components/ui/icon";
 import { openGraphImage, openGraphSiteDefaults, twitterImage } from "@/lib/seo-image";
+import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD, TEXT_LABEL_CAPS } from "@/lib/typography";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -21,41 +22,73 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact — Ege Kaya",
-    description:
-      "Get in touch for collaborations or just to say hi. Email: iamegekaya@egekaya.net.",
+    description: "Get in touch for collaborations or just to say hi. Email: iamegekaya@egekaya.net.",
     images: twitterImage,
   },
 };
 
+const externalNodes = [
+  { label: "GitHub", href: "https://github.com/iamegekaya" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/iamegekaya/" },
+  { label: "Instagram", href: "https://www.instagram.com/iamegekaya/" },
+];
+
 export default function ContactPage() {
   return (
     <main className="site-page">
-      <section className="w-[min(1120px,100%)]">
-        <div className="grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
-          <div className="content-start">
-            <GlassPanel>
-              <p className="site-page-eyebrow">Contact</p>
-              <SplitReveal
-                as="h1"
-                text="Get in Touch"
-                className="site-page-title max-w-none"
-              />
-              <p className="mt-6 text-[1rem] leading-7 text-[rgba(245,247,242,0.76)]">
-                Feel free to reach out for collaborations or just to say hi.
-              </p>
+      <div className="site-page-inner flex flex-col gap-10">
+        <header>
+          <h1 className={`${TEXT_DISPLAY_LG} text-primary-fixed mb-4`}>{"// INITIATE_CONTACT"}</h1>
+          <p className="max-w-2xl font-mono text-[14px] text-on-surface-variant">
+            Secure transmission lines open. Whether for security consultations, photographic collaborations, or
+            general inquiries, use the terminal below or reach out directly at{" "}
+            <a href="mailto:iamegekaya@egekaya.net" className="text-primary-fixed underline underline-offset-4">
+              iamegekaya@egekaya.net
+            </a>
+            .
+          </p>
+        </header>
 
-              <a
-                href="mailto:iamegekaya@egekaya.net"
-                className="mt-8 inline-flex rounded-2xl border border-[rgba(255,245,224,0.12)] bg-[rgba(255,255,255,0.04)] px-4 py-3 text-[1rem] font-medium text-[var(--foreground)] transition-colors hover:border-[rgba(65,176,110,0.32)] hover:text-[var(--accent)]"
-              >
-                iamegekaya@egekaya.net
-              </a>
-            </GlassPanel>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
+          <div className="md:col-span-7 lg:col-span-8">
+            <ContactForm />
           </div>
 
-          <ContactForm />
+          <div className="flex flex-col gap-6 md:col-span-5 lg:col-span-4">
+            <div className="glow-border relative rounded-lg border border-outline-variant bg-surface p-6 transition-colors">
+              <div className="absolute top-0 right-0 rounded-bl-sm border-b border-l border-outline-variant bg-surface-container px-2 py-1 font-mono text-[11px] text-primary-fixed">
+                [ON REQUEST]
+              </div>
+              <h3 className={`${TEXT_HEADLINE_MD} text-on-surface mb-4 flex items-center gap-2`}>
+                <KeyIcon className="h-5 w-5 text-primary-fixed" />
+                PGP Public Key
+              </h3>
+              <p className="font-sans text-[14px] text-on-surface-variant">
+                For encrypted communications regarding security disclosures, ask for a current public key via
+                the form or email above.
+              </p>
+            </div>
+
+            <div className="rounded-lg border border-outline-variant bg-surface p-6">
+              <h3 className={`${TEXT_LABEL_CAPS} text-primary-fixed mb-4 opacity-70`}>External_Nodes</h3>
+              <div className="flex flex-col gap-4">
+                {externalNodes.map((node) => (
+                  <a
+                    key={node.label}
+                    href={node.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between font-mono text-[14px] text-on-surface-variant transition-colors hover:text-primary-fixed"
+                  >
+                    <span>{node.label}</span>
+                    <ArrowForwardIcon className="h-4 w-4 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

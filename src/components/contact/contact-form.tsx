@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 
-import GlassPanel from "@/components/ui/glass-panel";
+import TerminalWindow from "@/components/ui/terminal-window";
 
 type FormState = {
   name: string;
@@ -23,15 +23,7 @@ const INITIAL_FORM: FormState = {
   company: "",
 };
 
-const FIELD_LABEL_CLASS_NAME =
-  "text-[0.82rem] font-semibold uppercase tracking-[0.16em] text-[var(--surface-text-muted)]";
-
-const FIELD_SHELL_CLASS_NAME =
-  "rounded-2xl border border-[var(--surface-border-strong)] bg-[var(--surface-input-bg)] text-[var(--foreground)] outline-none transition-colors placeholder:text-[var(--surface-text-subtle)] focus:border-[var(--accent-border-focus)]";
-
-const INPUT_CLASS_NAME = `${FIELD_SHELL_CLASS_NAME} h-[52px] px-4`;
-
-const TEXTAREA_CLASS_NAME = `${FIELD_SHELL_CLASS_NAME} min-h-[180px] px-4 py-3`;
+const FIELD_LABEL_CLASS_NAME = "block mb-2 font-mono text-[12px] tracking-[0.1em] text-primary-fixed opacity-70 uppercase";
 
 export default function ContactForm() {
   const formStartedAtRef = useRef(Date.now());
@@ -66,10 +58,7 @@ export default function ContactForm() {
       const data = (await response.json()) as { error?: string; ok?: boolean };
 
       if (!response.ok) {
-        throw new Error(
-          data.error ??
-            GENERIC_ERROR,
-        );
+        throw new Error(data.error ?? GENERIC_ERROR);
       }
 
       setForm(INITIAL_FORM);
@@ -87,8 +76,8 @@ export default function ContactForm() {
   }
 
   return (
-    <GlassPanel>
-      <form className="grid gap-4" onSubmit={handleSubmit}>
+    <TerminalWindow title="user@egekaya:~/contact_protocol" bodyClassName="p-6 md:p-8">
+      <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
         <label className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
           Company
           <input
@@ -103,10 +92,8 @@ export default function ContactForm() {
           />
         </label>
 
-        <label className="grid gap-2">
-          <span className={FIELD_LABEL_CLASS_NAME}>
-            Name
-          </span>
+        <div>
+          <label className={FIELD_LABEL_CLASS_NAME}>TARGET_ID (Name)</label>
           <input
             type="text"
             value={form.name}
@@ -115,15 +102,13 @@ export default function ContactForm() {
             }}
             required
             maxLength={120}
-            className={INPUT_CLASS_NAME}
-            placeholder="Your name"
+            className="terminal-field"
+            placeholder="Enter your designation..."
           />
-        </label>
+        </div>
 
-        <label className="grid gap-2">
-          <span className={FIELD_LABEL_CLASS_NAME}>
-            Email
-          </span>
+        <div>
+          <label className={FIELD_LABEL_CLASS_NAME}>RETURN_VECTOR (Email)</label>
           <input
             type="email"
             value={form.email}
@@ -132,15 +117,13 @@ export default function ContactForm() {
             }}
             required
             maxLength={320}
-            className={INPUT_CLASS_NAME}
-            placeholder="your@email.com"
+            className="terminal-field"
+            placeholder="Enter routing address..."
           />
-        </label>
+        </div>
 
-        <label className="grid gap-2">
-          <span className={FIELD_LABEL_CLASS_NAME}>
-            Message
-          </span>
+        <div>
+          <label className={FIELD_LABEL_CLASS_NAME}>PAYLOAD (Message)</label>
           <textarea
             value={form.message}
             onChange={(event) => {
@@ -148,45 +131,43 @@ export default function ContactForm() {
             }}
             required
             maxLength={5000}
-            rows={8}
-            className={TEXTAREA_CLASS_NAME}
-            placeholder="Write your message here..."
+            rows={5}
+            className="terminal-field resize-none"
+            placeholder="Construct message payload here..."
           />
-        </label>
+        </div>
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className="mt-2 inline-flex min-h-[52px] items-center justify-center rounded-2xl border border-[var(--accent-border-strong)] bg-[var(--accent-bg-soft)] px-5 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--foreground)] transition-colors hover:bg-[var(--accent-bg-hover)] disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </button>
+        <div className="flex items-center justify-between pt-2">
+          <span className="font-mono text-[12px] text-on-surface-variant/60">
+            {isSubmitting ? "> Transmitting..." : "> Awaiting input..."}
+          </span>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="rounded-sm bg-primary-fixed px-6 py-3 font-mono text-[13px] tracking-widest text-on-primary-fixed uppercase transition-colors hover:bg-primary-fixed-dim disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {isSubmitting ? "Sending..." : "Execute / Send"}
+          </button>
+        </div>
       </form>
 
       <div className="mt-4" aria-live="polite">
         {submissionState === "success" ? (
-          <div className="rounded-2xl border border-[var(--accent-border-strong)] bg-[var(--accent-bg-success)] px-4 py-3 text-[var(--surface-text-strong)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--accent)]">
-              Success:
-            </p>
-            <p className="mt-2 text-[0.98rem] leading-7">
-              Your message has been sent successfully. We&apos;ll get back to you
-              as soon as possible.
+          <div className="rounded border border-primary-fixed/40 bg-primary-container/10 px-4 py-3 text-on-surface">
+            <p className="font-mono text-[12px] tracking-[0.1em] text-primary-fixed uppercase">Success:</p>
+            <p className="mt-2 font-sans text-[15px] leading-relaxed">
+              Your message has been sent successfully. I&apos;ll get back to you as soon as possible.
             </p>
           </div>
         ) : null}
 
         {submissionState === "error" ? (
-          <div className="rounded-2xl border border-[var(--danger-border)] bg-[var(--danger-bg)] px-4 py-3 text-[var(--surface-text-strong)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--danger-text)]">
-              Error:
-            </p>
-            <p className="mt-2 text-[0.98rem] leading-7">
-              {errorMessage}
-            </p>
+          <div className="rounded border border-error/40 bg-error-container/20 px-4 py-3 text-on-surface">
+            <p className="font-mono text-[12px] tracking-[0.1em] text-error uppercase">Error:</p>
+            <p className="mt-2 font-sans text-[15px] leading-relaxed">{errorMessage}</p>
           </div>
         ) : null}
       </div>
-    </GlassPanel>
+    </TerminalWindow>
   );
 }

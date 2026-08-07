@@ -3,11 +3,11 @@ import { ImageResponse } from "next/og";
 const SITE_NAME = "egekaya.net";
 const SITE_TAGLINE = "Cyber Security · Photography";
 const SITE_AUTHOR = "Ege Kaya";
-const BG = "#050505";
-const FG = "#f5f7f2";
-const ACCENT = "#8bf5c7";
-const ACCENT_DIM = "rgba(139, 245, 199, 0.32)";
-const BORDER = "rgba(255, 245, 224, 0.12)";
+const BG = "#121414";
+const FG = "#e3e2e2";
+const ACCENT = "#72ff70";
+const ACCENT_DIM = "rgba(114, 255, 112, 0.28)";
+const BORDER = "rgba(59, 75, 55, 0.6)";
 
 export const alt = `${SITE_NAME} — ${SITE_TAGLINE}. ${SITE_AUTHOR}'s portfolio.`;
 export const size = { width: 1200, height: 630 };
@@ -26,7 +26,7 @@ export default function OpengraphImage() {
           padding: "72px 80px",
           background: `radial-gradient(80% 60% at 80% 10%, ${ACCENT_DIM} 0%, ${BG} 60%)`,
           color: FG,
-          fontFamily: '"IBM Plex Sans", "Segoe UI", sans-serif',
+          fontFamily: '"SFMono-Regular", Consolas, monospace',
           borderTop: `2px solid ${ACCENT}`,
           borderLeft: `1px solid ${BORDER}`,
           borderRight: `1px solid ${BORDER}`,
@@ -82,7 +82,7 @@ export default function OpengraphImage() {
             style={{
               fontSize: "32px",
               fontWeight: 500,
-              color: "rgba(245, 247, 242, 0.76)",
+              color: "#b9ccb2",
               letterSpacing: "0.02em",
             }}
           >
@@ -96,7 +96,7 @@ export default function OpengraphImage() {
             justifyContent: "space-between",
             alignItems: "center",
             fontSize: "22px",
-            color: "rgba(245, 247, 242, 0.62)",
+            color: "rgba(227, 226, 226, 0.62)",
             borderTop: `1px solid ${BORDER}`,
             paddingTop: "28px",
           }}

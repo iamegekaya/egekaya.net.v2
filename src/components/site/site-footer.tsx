@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
 
-// Structure follows daisyUI's "Footer with a logo section" + social icons
-// pattern (aside: name/tagline/copyright, nav: icon links) -- ported into
-// this site's own glass/pill visual language rather than daisyUI's flat
-// bg-neutral bar, since every other surface on the site (nav bubbles, cards)
-// already uses that treatment.
 type SocialLink = {
   label: string;
   href: string;
@@ -50,21 +45,11 @@ const socialLinks: SocialLink[] = [
 
 export default function SiteFooter() {
   return (
-    <footer className="relative z-[1] px-6 pb-6 sm:px-8 sm:pb-8">
-      <div className="mx-auto flex w-fit flex-col items-center gap-4 rounded-[28px] border border-[var(--surface-border-footer)] bg-[var(--surface-footer-bg)] px-6 py-5 text-center shadow-[var(--surface-shadow-footer)] backdrop-blur-[16px] sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:text-left">
-        <div>
-          <p className="text-[0.92rem] font-bold tracking-[0.04em] text-[var(--surface-text-strong)]">
-            Ege Kaya
-          </p>
-          <p className="mt-1 text-[0.78rem] font-medium tracking-[0.04em] text-[var(--surface-text-footer)]">
-            Cybersecurity engineer &amp; photographer
-          </p>
-          <p className="mt-1 text-[0.72rem] font-medium tracking-[0.06em] text-[var(--surface-text-muted)]">
-            © {new Date().getFullYear()} Ege Kaya - egekaya.net. All rights reserved.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-4">
+    <footer className="relative z-[1] mt-auto border-t border-outline-variant bg-surface-container-low">
+      <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-4 px-4 py-8 text-center font-mono text-[14px] md:flex-row md:justify-between md:px-10 md:text-left">
+        <span className="text-[15px] font-bold tracking-tighter text-on-surface">EGE_KAYA //</span>
+        <p className="text-on-surface-variant">© {new Date().getFullYear()} ROOT_USER. ENCRYPTED ACCESS ONLY.</p>
+        <div className="flex items-center gap-4 text-on-surface-variant">
           {socialLinks.map((item) => (
             <a
               key={item.label}
@@ -72,7 +57,7 @@ export default function SiteFooter() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={item.label}
-              className="text-[var(--surface-text-footer)] transition-colors hover:text-[var(--accent)]"
+              className="transition-colors hover:text-primary-fixed"
             >
               {item.icon}
             </a>

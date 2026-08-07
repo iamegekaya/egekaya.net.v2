@@ -1,49 +1,40 @@
 import Link from "next/link";
 
-import LetterGlitch from "@/components/backgrounds/letter-glitch";
-import GlassPanel from "@/components/ui/glass-panel";
-import { SITE_GLITCH_COLORS } from "@/lib/site-palette";
+import TerminalWindow from "@/components/ui/terminal-window";
+import { TEXT_DISPLAY_LG } from "@/lib/typography";
 
-// This file renders outside the (site) layout, so the background and the way
-// back to the site have to be provided here rather than inherited.
+// Renders outside the (site) layout, so the background and the way back to
+// the site are provided here rather than inherited.
 export default function NotFound() {
   return (
     <div className="site-canvas">
-      <div className="site-background" aria-hidden="true">
-        <LetterGlitch
-          glitchColors={SITE_GLITCH_COLORS}
-          glitchSpeed={100}
-          centerVignette
-          outerVignette
-          smooth
-        />
-      </div>
+      <div className="site-grid-bg" aria-hidden="true" />
 
       <main className="site-page">
-        <section className="w-[min(720px,100%)]">
-          <GlassPanel>
-            <p className="site-page-eyebrow">Error 404</p>
-            <h1 className="site-page-title max-w-none">Page Not Found</h1>
-            <p className="mt-6 text-[1rem] leading-7 text-[rgba(245,247,242,0.76)]">
+        <div className="site-page-inner flex max-w-2xl flex-col">
+          <TerminalWindow bodyClassName="p-6 md:p-8">
+            <p className="font-mono text-[13px] tracking-[0.1em] text-primary-fixed uppercase">Error 404</p>
+            <h1 className={`${TEXT_DISPLAY_LG} text-on-surface mt-2 mb-4`}>Page Not Found</h1>
+            <p className="font-sans text-[16px] leading-relaxed text-on-surface-variant">
               The page you are looking for does not exist or has been moved.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/"
-                className="inline-flex rounded-2xl border border-[var(--accent-border-strong)] bg-[var(--accent-bg-soft)] px-4 py-3 text-[1rem] font-medium text-[var(--foreground)] transition-colors hover:bg-[var(--accent-bg-hover)] hover:text-[var(--accent)]"
+                className="rounded-sm border border-primary-fixed bg-primary-fixed/10 px-4 py-3 font-mono text-[14px] text-on-surface transition-colors hover:bg-primary-fixed/20 hover:text-primary-fixed"
               >
                 Back to home
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex rounded-2xl border border-[var(--surface-border-strong)] bg-[var(--surface-input-bg)] px-4 py-3 text-[1rem] font-medium text-[var(--foreground)] transition-colors hover:border-[var(--accent-border-strong)] hover:text-[var(--accent)]"
+                className="rounded-sm border border-outline-variant px-4 py-3 font-mono text-[14px] text-on-surface transition-colors hover:border-primary-fixed hover:text-primary-fixed"
               >
                 Contact
               </Link>
             </div>
-          </GlassPanel>
-        </section>
+          </TerminalWindow>
+        </div>
       </main>
     </div>
   );

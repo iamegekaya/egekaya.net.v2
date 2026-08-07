@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-import SplitReveal from "@/components/about/split-reveal";
-import GradientCallout from "@/components/ui/gradient-callout";
-import StaggerList from "@/components/about/stagger-list";
-import GlarePanel from "@/components/ui/glare-panel";
-import GlassPanel from "@/components/ui/glass-panel";
-import {
-  GLASS_LIST_TILE_CLASS_NAME,
-  GLASS_LIST_TILE_SUBDUED_CLASS_NAME,
-} from "@/components/ui/glass-tile";
-import { SITE_ACCENT_COLOR, SITE_LIGHT_ACCENT_COLOR } from "@/lib/site-palette";
+
+import TerminalWindow from "@/components/ui/terminal-window";
 import { openGraphImage, openGraphSiteDefaults, twitterImage } from "@/lib/seo-image";
+import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD, TEXT_LABEL_CAPS } from "@/lib/typography";
 import { architectureSections, securityPrinciples } from "@/lib/cyber-security-content";
 
 export const metadata: Metadata = {
@@ -35,201 +28,109 @@ export const metadata: Metadata = {
   },
 };
 
-const activeSystems = [
-  "Linux: Ubuntu (Server and Client Management)",
-  "macOS: Development and Analysis Environment",
-  "Windows: 11 Pro (Corporate Structure Simulations)",
-];
+const projectSlots = [1, 2, 3];
 
-const operatingSystemExperience = [
-  "Security-focused systems: Kali Linux, Parrot OS",
-  "Server and desktop systems: CentOS, Fedora, Linux Mint, Windows 10 / 7 / Vista",
-];
+const CARD_CLASS_NAME =
+  "glow-border flex flex-col gap-4 rounded-lg border border-outline-variant bg-surface p-6 transition-colors";
 
 export default function CyberSecurityPage() {
   return (
     <main className="site-page">
-      <section className="w-[min(1160px,100%)]">
-        <div className="grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
-          <GlassPanel as="div">
-            <p className="site-page-eyebrow">Cybersecurity</p>
-            <SplitReveal
-              as="h1"
-              text="Hello, I'm Ege."
-              className="site-page-title max-w-none"
-            />
-
-            <div className="mt-6 space-y-5 text-[1.02rem] leading-7 text-[rgba(245,247,242,0.82)]">
-              <p>
-                Cybersecurity is not just an area of interest for me, but a
-                disciplined learning process and an architectural design mindset.
-                I focus on understanding systems in depth, identifying
-                vulnerabilities, and building structures around the Zero Trust
-                principle.
-              </p>
-
-              <p>
-                I have gained experience across a wide range of operating systems
-                and infrastructure models in order to study how different
-                architectures behave under real conditions.
-              </p>
-
-              <p>
-                My work today sits at the intersection of system management, web
-                technologies, traffic analysis, defensive operations, and security
-                automation.
-              </p>
-            </div>
-          </GlassPanel>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {securityPrinciples.map((item) => (
-              <GlarePanel
-                key={item.value}
-                className="min-h-[170px]"
-                glareColor={SITE_ACCENT_COLOR}
-                glareOpacity={0.16}
-                glareSize={180}
-              >
-                <div className="relative z-[1] flex h-full flex-col justify-between">
-                  <p className="text-[0.74rem] font-bold tracking-[0.22em] text-[rgba(245,247,242,0.58)] uppercase">
-                    {item.label}
-                  </p>
-                  <div>
-                    <p className="text-[1.55rem] leading-none font-semibold text-[var(--foreground)]">
-                      {item.value}
-                    </p>
-                    <p className="mt-3 text-sm leading-6 text-[rgba(245,247,242,0.74)]">
-                      {item.detail}
-                    </p>
-                  </div>
-                </div>
-              </GlarePanel>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
-          <GlassPanel>
-            <SplitReveal
-              as="h2"
-              text="Actively Used Systems"
-              className="text-[1.55rem] font-semibold tracking-[-0.03em] text-[var(--foreground)]"
-            />
-            <p className="mt-3 text-[0.98rem] leading-7 text-[rgba(245,247,242,0.72)]">
-              These are the environments I actively use for administration,
-              development, simulation, and analysis.
-            </p>
-
-            <StaggerList
-              items={activeSystems}
-              className="mt-6 m-0 grid list-none gap-3 p-0"
-              itemClassName={GLASS_LIST_TILE_CLASS_NAME}
-            />
-          </GlassPanel>
-
-          <GlassPanel>
-            <SplitReveal
-              as="h2"
-              text="System Experience"
-              className="text-[1.55rem] font-semibold tracking-[-0.03em] text-[var(--foreground)]"
-            />
-            <p className="mt-3 text-[0.98rem] leading-7 text-[rgba(245,247,242,0.72)]">
-              I have worked across multiple desktop, server, and security-focused
-              operating systems to understand different behaviors and deployment
-              patterns.
-            </p>
-
-            <StaggerList
-              items={operatingSystemExperience}
-              className="mt-6 m-0 grid list-none gap-3 p-0"
-              itemClassName={GLASS_LIST_TILE_CLASS_NAME}
-            />
-          </GlassPanel>
-        </div>
-
-        <GlassPanel as="div" className="mt-6">
-          <SplitReveal
-            as="h2"
-            text="Technical Infrastructure & Architectural Approach"
-            className="text-[1.75rem] font-semibold tracking-[-0.03em] text-[var(--foreground)]"
-          />
-          <p className="mt-3 max-w-[56rem] text-[1rem] leading-7 text-[rgba(245,247,242,0.74)]">
-            Beyond standard installations, I manage a hybrid architecture that
-            balances performance and security.
+      <div className="site-page-inner flex flex-col gap-10">
+        <header className="flex flex-col gap-4">
+          <h1 className={`${TEXT_DISPLAY_LG} text-primary-fixed`}>&gt; ./SECURITY_PROFILE</h1>
+          <p className="max-w-2xl font-sans text-[16px] leading-relaxed text-on-surface-variant">
+            Cybersecurity is not just an area of interest for me, but a disciplined learning process and an
+            architectural design mindset. I focus on understanding systems in depth, identifying
+            vulnerabilities, and building structures around the Zero Trust principle — sitting at the
+            intersection of system management, traffic analysis, defensive operations, and security automation.
           </p>
+        </header>
 
-          <div className="mt-6 grid gap-4 xl:grid-cols-2">
+        <section className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {securityPrinciples.map((item) => (
+            <div key={item.value} className={CARD_CLASS_NAME}>
+              <div className="flex items-start justify-between">
+                <span className={`${TEXT_LABEL_CAPS} text-on-surface-variant`}>{item.label}</span>
+              </div>
+              <h3 className="font-sans text-[20px] font-semibold text-on-surface">{item.value}</h3>
+              <p className="font-sans text-[14px] leading-relaxed text-on-surface-variant">{item.detail}</p>
+            </div>
+          ))}
+        </section>
+
+        <section className="flex flex-col gap-6">
+          <h2 className={`${TEXT_HEADLINE_MD} text-on-surface border-b border-outline-variant pb-2`}>
+            Technical Infrastructure &amp; Architecture
+          </h2>
+          <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
             {architectureSections.map((section) => (
-              <GlarePanel
-                key={section.index}
-                id={section.slug}
-                className="min-h-[280px] scroll-mt-32"
-                variant="feature"
-                glareColor={SITE_LIGHT_ACCENT_COLOR}
-                glareOpacity={0.12}
-                glareSize={200}
-              >
-                <div className="relative z-[1]">
-                  <p className="text-[0.74rem] font-bold tracking-[0.22em] text-[var(--accent)] uppercase">
-                    {section.index}
-                  </p>
-                  <h3 className="mt-4 text-[1.3rem] font-semibold tracking-[-0.03em] text-[var(--foreground)]">
-                    {section.title}
-                  </h3>
-                  <p className="mt-4 text-[0.98rem] leading-7 text-[rgba(245,247,242,0.74)]">
-                    {section.intro}
-                  </p>
-
-                  <ul className="mt-4 grid gap-3 list-none p-0 m-0">
-                    {section.bullets.map((bullet) => (
-                      <li
-                        key={bullet}
-                        className={GLASS_LIST_TILE_SUBDUED_CLASS_NAME}
-                      >
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </GlarePanel>
+              <div key={section.slug} id={section.slug} className={`${CARD_CLASS_NAME} scroll-mt-32`}>
+                <span className={`${TEXT_LABEL_CAPS} text-primary-fixed`}>{section.index}</span>
+                <h3 className="font-sans text-[19px] font-semibold text-on-surface">{section.title}</h3>
+                <p className="font-sans text-[15px] leading-relaxed text-on-surface-variant">{section.intro}</p>
+                <ul className="flex flex-col gap-2">
+                  {section.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className="rounded border border-outline-variant/60 bg-surface-container-lowest px-3 py-2 font-mono text-[13px] leading-relaxed text-on-surface-variant"
+                    >
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
-        </GlassPanel>
+        </section>
 
-        <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <GlassPanel>
-            <p className="text-[0.74rem] font-bold tracking-[0.22em] text-[var(--accent)] uppercase">
-              Experience
-            </p>
-            <h2 className="mt-4 text-[1.55rem] font-semibold tracking-[-0.03em] text-[var(--foreground)]">
-              Aktif Yatırım Bankası A.Ş
-            </h2>
-            <p className="mt-2 text-[1rem] font-medium text-[rgba(245,247,242,0.8)]">
+        <section className="flex flex-col gap-4">
+          <h2 className={`${TEXT_HEADLINE_MD} text-on-surface border-b border-outline-variant pb-2`}>
+            Projects
+          </h2>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projectSlots.map((slot) => (
+              <div key={slot} className={`${CARD_CLASS_NAME} min-h-[220px] justify-between`}>
+                <div className="flex items-start justify-between">
+                  <span className={`${TEXT_LABEL_CAPS} text-on-surface-variant`}>SLOT_{String(slot).padStart(2, "0")}</span>
+                  <span className="font-mono text-[13px] text-on-surface-variant">[COMING SOON]</span>
+                </div>
+                <p className="font-sans text-[14px] leading-relaxed text-on-surface-variant">
+                  Write-ups and tooling from CTFs and independent research will be published here once
+                  they are ready.
+                </p>
+                <span className="cursor-not-allowed border border-outline-variant px-4 py-2 text-center font-mono text-[13px] text-on-surface-variant">
+                  ENCRYPTED
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="grid grid-cols-1 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-lg border border-outline-variant bg-surface p-6 md:p-8">
+            <span className={`${TEXT_LABEL_CAPS} text-primary-fixed`}>Experience</span>
+            <h2 className="mt-4 font-sans text-[20px] font-semibold text-on-surface">Aktif Yatırım Bankası A.Ş</h2>
+            <p className="mt-2 font-sans text-[16px] font-medium text-on-surface-variant">
               Information Technologies Security Intern
             </p>
-            <p className="mt-3 text-[0.92rem] uppercase tracking-[0.14em] text-[rgba(245,247,242,0.48)]">
-              July 2, 2025 - August 27, 2025
+            <p className="mt-3 font-mono text-[12px] tracking-[0.1em] text-on-surface-variant/70 uppercase">
+              July 2, 2025 – August 27, 2025
             </p>
-            <p className="mt-6 text-[1rem] leading-7 text-[rgba(245,247,242,0.76)]">
-              During this period, I developed active work around system
-              management, web technologies, and security automations, while
-              continuing to strengthen my Blue Team perspective.
+            <p className="mt-6 font-sans text-[15px] leading-relaxed text-on-surface-variant">
+              During this period, I developed active work around system management, web technologies, and
+              security automations, while continuing to strengthen my Blue Team perspective.
             </p>
-          </GlassPanel>
+          </div>
 
-          <GradientCallout className="p-6 sm:p-8">
-            <p className="text-[0.74rem] font-bold tracking-[0.22em] text-[rgba(245,247,242,0.74)] uppercase">
-              Security Philosophy
-            </p>
-            <p className="mt-5 text-[1.16rem] leading-8 text-[rgba(245,247,242,0.92)] sm:text-[1.24rem]">
-              &quot;Security is not a product, but a process. I aim to improve
-              this process at every step, from the logging systems I wrote
-              myself to the network topology I established.&quot;
-            </p>
-          </GradientCallout>
-        </div>
-      </section>
+          <TerminalWindow title="root@sec_photo:~" bodyClassName="p-6 md:p-8 flex flex-col justify-end min-h-[220px]">
+            <p className="font-mono text-[14px] text-primary-fixed/80">Initializing security profile...</p>
+            <p className="font-mono text-[14px] text-primary-fixed/80">Compiling principles... [OK]</p>
+            <p className="font-mono text-[14px] text-primary-fixed/80">Loading real-world experience... [4 modules]</p>
+            <p className="font-mono text-[14px] text-primary-fixed animate-pulse">Awaiting new write-ups_</p>
+          </TerminalWindow>
+        </section>
+      </div>
     </main>
   );
 }
