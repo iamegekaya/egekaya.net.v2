@@ -12,6 +12,20 @@ import type { NextConfig } from "next";
  */
 const CSP_REPORT_ONLY = false;
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
+/**
+ * `'unsafe-eval'` is added in development only. React's development build calls
+ * eval() for debugging features such as reconstructing callstacks across
+ * environments, so enforcing the policy without it breaks `next dev` while
+ * leaving `next build` perfectly happy — which is exactly how it slipped
+ * through the first time. Production React never calls eval(), so the shipped
+ * policy keeps the directive out.
+ */
+const scriptSource = isDevelopment
+  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+  : "script-src 'self' 'unsafe-inline'";
+
 /**
  * Every asset this site loads is same-origin: no third-party scripts, no
  * webfonts (system font stack), and images come from /_next/image and
@@ -25,7 +39,7 @@ const CSP_REPORT_ONLY = false;
  */
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  scriptSource,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
