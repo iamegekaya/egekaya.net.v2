@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * "Bit & Aperture" design system (ported from the Stitch mockups).
+ * "Bit & Aperture" design system (palette and type scale in DESIGN.md).
  *
  * Tokens are plain CSS custom properties on `:root` (dark, default) and
  * `[data-theme="light"]` (override). `@theme` below only re-points Tailwind's

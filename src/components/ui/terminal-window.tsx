@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
 
 /**
- * The red/yellow/green-dot terminal chrome repeated across the home hero,
- * the security page, and the contact form in the Stitch mockups. One shared
- * component instead of copy-pasting the dot markup three times per the
- * earlier audit's "repeated logic" findings on the previous design.
+ * The red/yellow/green-dot terminal chrome, shared by seven callers: the home
+ * hero, the about/security/photography pages, the contact form, and both error
+ * screens. One component rather than copy-pasted dot markup in each.
  */
 type TerminalWindowProps = {
   title?: string;

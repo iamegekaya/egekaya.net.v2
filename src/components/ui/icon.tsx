@@ -35,24 +35,6 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
-export function HomeIcon(props: IconProps) {
-  return (
-    <svg {...BASE_PROPS} {...props}>
-      <path d="M3 11.5 12 4l9 7.5" />
-      <path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9" />
-    </svg>
-  );
-}
-
-export function PersonIcon(props: IconProps) {
-  return (
-    <svg {...BASE_PROPS} {...props}>
-      <circle cx="12" cy="8" r="3.5" />
-      <path d="M4.5 20c1.2-3.6 4.2-5.5 7.5-5.5s6.3 1.9 7.5 5.5" />
-    </svg>
-  );
-}
-
 export function TerminalIcon(props: IconProps) {
   return (
     <svg {...BASE_PROPS} {...props}>
@@ -67,15 +49,6 @@ export function CameraIcon(props: IconProps) {
     <svg {...BASE_PROPS} {...props}>
       <path d="M4 8h3.2l1.4-2h6.8l1.4 2H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" />
       <circle cx="12" cy="13" r="3.4" />
-    </svg>
-  );
-}
-
-export function MailIcon(props: IconProps) {
-  return (
-    <svg {...BASE_PROPS} {...props}>
-      <rect x="3" y="5" width="18" height="14" rx="1.5" />
-      <path d="m4 7 8 6 8-6" />
     </svg>
   );
 }
