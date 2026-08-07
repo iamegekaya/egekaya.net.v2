@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Photography Portfolio - SEC_PHOTO //</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "primary-fixed": "#72ff70",
+                            "on-secondary-fixed-variant": "#23501e",
+                            "surface-container-low": "#1b1c1c",
+                            "on-secondary-fixed": "#002201",
+                            "on-surface": "#e3e2e2",
+                            "inverse-surface": "#e3e2e2",
+                            "on-error": "#690005",
+                            "error-container": "#93000a",
+                            "primary": "#ebffe2",
+                            "surface-tint": "#00e639",
+                            "on-primary-fixed": "#002203",
+                            "tertiary-fixed-dim": "#c8c6c5",
+                            "surface-container-lowest": "#0d0e0f",
+                            "inverse-on-surface": "#303031",
+                            "tertiary": "#fcf8f8",
+                            "surface": "#121414",
+                            "outline-variant": "#3b4b37",
+                            "background": "#121414",
+                            "secondary-fixed-dim": "#a1d494",
+                            "on-secondary": "#0a3909",
+                            "inverse-primary": "#006e16",
+                            "on-tertiary-fixed-variant": "#474646",
+                            "on-surface-variant": "#b9ccb2",
+                            "surface-container": "#1f2020",
+                            "on-tertiary-container": "#626060",
+                            "surface-variant": "#343535",
+                            "on-tertiary-fixed": "#1c1b1b",
+                            "on-primary-fixed-variant": "#00530e",
+                            "secondary": "#a1d494",
+                            "secondary-fixed": "#bcf0ae",
+                            "on-primary": "#003907",
+                            "primary-fixed-dim": "#00e639",
+                            "surface-container-high": "#292a2a",
+                            "surface-bright": "#383939",
+                            "on-tertiary": "#313030",
+                            "surface-dim": "#121414",
+                            "tertiary-fixed": "#e5e2e1",
+                            "error": "#ffb4ab",
+                            "on-background": "#e3e2e2",
+                            "on-secondary-container": "#90c283",
+                            "primary-container": "#00ff41",
+                            "tertiary-container": "#dfdcdb",
+                            "secondary-container": "#23501e",
+                            "outline": "#84967e",
+                            "surface-container-highest": "#343535",
+                            "on-error-container": "#ffdad6",
+                            "on-primary-container": "#007117"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "stack-md": "32px",
+                            "stack-lg": "64px",
+                            "container-max": "1200px",
+                            "margin-desktop": "40px",
+                            "margin-mobile": "16px",
+                            "gutter": "24px",
+                            "base": "8px",
+                            "stack-sm": "12px"
+                    },
+                    "fontFamily": {
+                            "display-lg-mobile": [
+                                    "JetBrains Mono"
+                            ],
+                            "label-caps": [
+                                    "JetBrains Mono"
+                            ],
+                            "display-lg": [
+                                    "JetBrains Mono"
+                            ],
+                            "body-md": [
+                                    "Inter"
+                            ],
+                            "code-sm": [
+                                    "JetBrains Mono"
+                            ],
+                            "body-lg": [
+                                    "Inter"
+                            ],
+                            "headline-md": [
+                                    "JetBrains Mono"
+                            ]
+                    },
+                    "fontSize": {
+                            "display-lg-mobile": [
+                                    "32px",
+                                    {
+                                            "lineHeight": "1.2",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "label-caps": [
+                                    "12px",
+                                    {
+                                            "lineHeight": "1",
+                                            "letterSpacing": "0.1em",
+                                            "fontWeight": "600"
+                                    }
+                            ],
+                            "display-lg": [
+                                    "48px",
+                                    {
+                                            "lineHeight": "1.1",
+                                            "letterSpacing": "-0.02em",
+                                            "fontWeight": "700"
+                                    }
+                            ],
+                            "body-md": [
+                                    "16px",
+                                    {
+                                            "lineHeight": "1.6",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "code-sm": [
+                                    "14px",
+                                    {
+                                            "lineHeight": "1.5",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "body-lg": [
+                                    "18px",
+                                    {
+                                            "lineHeight": "1.6",
+                                            "fontWeight": "400"
+                                    }
+                            ],
+                            "headline-md": [
+                                    "24px",
+                                    {
+                                            "lineHeight": "1.4",
+                                            "fontWeight": "500"
+                                    }
+                            ]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #121414; /* background color fallback */
+            color: #e3e2e2; /* on-background color fallback */
+        }
+        
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 24px; /* gutter */
+        }
+        
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+        
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px; /* gutter */
+        }
+        
+        /* High-Tech Minimalism Grid Lines */
+        .bg-grid-pattern {
+            background-image: 
+                linear-gradient(to right, #1A1A1A 1px, transparent 1px),
+                linear-gradient(to bottom, #1A1A1A 1px, transparent 1px);
+            background-size: 100px 100px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background bg-grid-pattern min-h-screen flex flex-col font-body-md text-body-md antialiased relative">
+<!-- Top Navigation (Desktop & Mobile Nav Shell) -->
+<header class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant dark:border-outline-variant">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<!-- Brand Logo -->
+<a class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-fixed dark:text-primary-fixed-dim tracking-tighter flex items-center gap-3 hover:opacity-80 transition-opacity" href="#">
+<img alt="SEC_PHOTO Logo" class="w-10 h-10 object-contain filter invert opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdmtxWl2VZbqPcEhULRfJupU1jd7N838gZ2Qk1Lzp5LSXNAYBsG-mKBL1PucR9jSlFUuevMUyl3qhROhcCcDOxCbfPECmYWZxLd9Th9LwMblhWFhT60oNqOsv0SVSGksixr0FsqunoXGVICGW1kA4fdvSSDkbaniJ0Dh-uuWB1ewFkGF_fkqzay3Q5FiRnHQZZ9dUlmSPCrfauTLh7ZhOfz8PcmsUwDxZlbV6Vcy4kinL2e6e_RlwH"/>
+                SEC_PHOTO //
+            </a>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-6 font-code-sm text-code-sm uppercase tracking-widest">
+<a class="text-on-surface-variant hover:text-primary-fixed hover:bg-primary-container/10 transition-colors duration-300 px-3 py-2 rounded-DEFAULT" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary-fixed hover:bg-primary-container/10 transition-colors duration-300 px-3 py-2 rounded-DEFAULT" href="#">About</a>
+<a class="text-on-surface-variant hover:text-primary-fixed hover:bg-primary-container/10 transition-colors duration-300 px-3 py-2 rounded-DEFAULT" href="#">Security</a>
+<a class="text-primary-fixed border-b-2 border-primary-fixed hover:bg-primary-container/10 transition-colors duration-300 px-3 py-2" href="#">Photography</a>
+<a class="text-on-surface-variant hover:text-primary-fixed hover:bg-primary-container/10 transition-colors duration-300 px-3 py-2 rounded-DEFAULT" href="#">Contact</a>
+<!-- Trailing Icon -->
+<button class="text-on-surface-variant hover:text-primary-fixed ml-4 cursor-pointer active:scale-95 transition-transform p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+</nav>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-on-surface hover:text-primary-fixed cursor-pointer active:scale-95 transition-transform p-2 rounded-DEFAULT hover:bg-surface-variant" id="mobile-menu-btn">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content: Photography Gallery -->
+<main class="flex-grow pt-[120px] pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full z-10">
+<!-- Section Header -->
+<div class="mb-stack-lg text-center md:text-left flex flex-col md:flex-row md:justify-between md:items-end gap-4">
+<div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-2">GALLERY_INDEX</h1>
+<p class="font-code-sm text-code-sm text-on-surface-variant uppercase tracking-widest">[ VISUAL_DATA_CAPTURE ]</p>
+</div>
+<div class="font-code-sm text-code-sm text-outline hidden md:block">
+<span>&gt; STATUS: <span class="text-primary-fixed">[ONLINE]</span></span>
+</div>
+</div>
+<!-- Masonry Grid Gallery -->
+<div class="masonry-grid w-full">
+<!-- Gallery Item 1 -->
+<div class="masonry-item relative group overflow-hidden bg-surface-container rounded-DEFAULT border border-transparent hover:border-outline-variant transition-colors duration-300 cursor-pointer">
+<img class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" data-alt="A breathtaking landscape photograph of rugged mountains piercing through a thick layer of morning mist. The scene is captured with a high-tech minimalist aesthetic, utilizing a dramatic monochrome palette punctuated by stark, brilliant white highlights. The lighting is cinematic, casting long, deep shadows that emphasize the sheer scale and texture of the rock formations. The mood is solitary and commanding, reflecting a sense of untamed wilderness captured through a precise, technical lens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmRSedaClDGgrA2LEIgnqGWiFuwDV8eGo_Nu9up_m-ubZC10x9pJS49rHpWptUKfRZxunokWQuKGZohlO8fzVUuNt1wNk-QVtXpLBYRjJ5ZF_fKU_tBDMFnanoUyA3XRZLFR2V9F_KwBMxur7iL-MCm0T1oSi49Ktxlv-pgtXu--TOuom5agjhWSZ3YHbwiNdhXxeEhcbpQinQF7RtrzqcZerYQnQmgLADPA6oyPxsvPiVp-xjcowz"/>
+<!-- Minimalist Caption on Hover -->
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0 flex justify-between items-end">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Alpine Peak</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">ISO 100 // f/8 // 1/250s</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed" data-icon="photo_camera">photo_camera</span>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="masonry-item relative group overflow-hidden bg-surface-container rounded-DEFAULT border border-transparent hover:border-outline-variant transition-colors duration-300 cursor-pointer">
+<img class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" data-alt="A striking urban street photography shot at night, featuring a narrow alleyway illuminated by glowing neon signs and rain-slicked pavement reflecting the vibrant lights. The aesthetic is gritty yet technically flawless, maintaining a dark mode atmosphere with deep blacks and vivid, cybernetic neon greens and blues. The composition is highly structured, using the leading lines of the buildings to draw the eye into the depths of the city. The mood is tense, energetic, and undeniably modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZUazteWvfheL1GbqieAt62eDfL_8E74mIwF1DC0EaSyigS3pJM4eJ0LSNAWxN4kLVi9W7FKc5a-ssPHf0b9RhuO62Q-yp-LEi5gDxx2bkSAVkzkLbYaMH4-09zk10qUakPnbmoQ7BOjgQHv2J6BqO9P_ypKI1nzFdgh5Ebzx34sgY66IYf6LlkUzwmyws0-u5OWTLC-Wdc7ulzmNAMbwSUTlQi6qGeMT1TMIAGHjTksegmduMIaOE"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0 flex justify-between items-end">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Neon Grid</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">ISO 800 // f/2.8 // 1/60s</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed" data-icon="location_on">location_on</span>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="masonry-item relative group overflow-hidden bg-surface-container rounded-DEFAULT border border-transparent hover:border-outline-variant transition-colors duration-300 cursor-pointer">
+<img class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" data-alt="A compelling black and white portrait of a person with intense, focused eyes, emerging from deep shadows into soft, directional light. The aesthetic emphasizes high-tech minimalism, with sharp details capturing the texture of the skin and clothing against a completely black background. The lighting is low-key, utilizing dramatic chiaroscuro to create depth and psychological intensity. The mood is serious, analytical, and deeply engaging, mirroring the precision of both cybersecurity and professional portraiture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVCCMAr9ECwIrZTj_T1VAsDKj6y-JlF_5Kn3bcl-lQhhMRZcV-p9u_ecQTq64W4BMFAB0pLEUZ_P2LAiqIG019jVbEHdlKjPe37SRSxoducCWZTqgO1f_UbXWOSCfRCGI-2F7jked7REm4H75gbajFziSAiIcDCrgQ6-PspVCmytqqaz4IjV7cc7pZy0Kkj-MHVxHoLevAu6V3m5dXR6oC44FTYyjGuvyYFGdmr3vBm8Eg3IlildA8"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0 flex justify-between items-end">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Subject_01</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">85mm // f/1.4 // 1/125s</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed" data-icon="person">person</span>
+</div>
+</div>
+<!-- Gallery Item 4 -->
+<div class="masonry-item relative group overflow-hidden bg-surface-container rounded-DEFAULT border border-transparent hover:border-outline-variant transition-colors duration-300 cursor-pointer">
+<img class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" data-alt="An expansive architectural photograph of a brutalist concrete structure against a stark, cloudless sky. The composition is highly geometric and asymmetrical, emphasizing the heavy, imposing lines of the building. The aesthetic aligns with a dark mode, high-tech minimalism, using a desaturated color palette dominated by slate greys and deep charcoal shadows. The lighting is harsh midday sun, creating sharp, angular shadows that reinforce the structure's rigidity. The mood is imposing, structured, and monumentally silent." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ65b6_Qnui08a7QMrj993lYPp2lfaDkcA26ey4168ZZLW-p7NElVvnRrj3ko32C_dOBzBQuyDnIDXxp-L-JH_gfOf3u1qNpAkYLLWGAfPgdqRlrIsnpvw-5-q5tKnHMpWg-bfyOu6XAqKa__H4f-FfU9FWJGMFjIdlgTDp9uoO-P1w1l7Uk0bPT1szpoHkv6p6-DJcD3V47Q7Kd-BGpan0cvVmPdUvogDopsEIVg7mo7ZsmkGkDuL"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0 flex justify-between items-end">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Concrete Sector</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">24mm // f/11 // 1/400s</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed" data-icon="domain">domain</span>
+</div>
+</div>
+<!-- Gallery Item 5 -->
+<div class="masonry-item relative group overflow-hidden bg-surface-container rounded-DEFAULT border border-transparent hover:border-outline-variant transition-colors duration-300 cursor-pointer">
+<img class="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out" data-alt="A minimalist abstract macro photograph of intertwined metallic cables and glass fibers, bathed in a cool, artificial blue light with sharp green accents. The image is hyper-detailed, showcasing the intricate weave and reflective surfaces of the materials. The dark background ensures the illuminated elements stand out sharply, embodying a high-tech, futuristic aesthetic. The mood is cold, calculated, and emphasizes the physical infrastructure of digital data transmission." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMgKN0xgnoRkyGJyiGIzTahEKddhZpNNnLdtQCooYdUxaJlVT13mTcPcG6wFD8M8zDClKoMkymygad04LrKWFVLAogDLFAwC7LVB64Ri0t8heyiKy2XRlnoWTt4d_bqHC_036d-W5ehcfFi3x8hrkWhk3Q2IQxMrgciVrYmUYa7XXtrmQqzyvq4NmP_4nEgYNhj7LEGiMa5Oo59ZXyWIHSi610VXhifEOW7m-iW2Ex-5Ww_9qt8v7q"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0 flex justify-between items-end">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">Fiber Optics</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Macro // f/2.8 // 1/100s</p>
+</div>
+<span class="material-symbols-outlined text-primary-fixed" data-icon="cable">cable</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-surface-container-low dark:bg-surface-container-low w-full py-stack-md border-t border-outline-variant z-10 relative mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop gap-gutter max-w-container-max mx-auto font-code-sm text-code-sm text-on-surface-variant">
+<div class="font-display-lg-mobile text-display-lg-mobile text-on-surface flex items-center gap-2">
+<span class="text-sm font-code-sm">SEC_PHOTO //</span>
+</div>
+<p>© 2024 ROOT_USER. ENCRYPTED ACCESS ONLY.</p>
+<div class="flex gap-4">
+<a class="hover:text-primary-fixed hover:underline decoration-primary-fixed underline-offset-4 transition-all" href="#">GitHub</a>
+<a class="hover:text-primary-fixed hover:underline decoration-primary-fixed underline-offset-4 transition-all" href="#">LinkedIn</a>
+<a class="hover:text-primary-fixed hover:underline decoration-primary-fixed underline-offset-4 transition-all" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Side Nav Overlay (Hidden by default) -->
+<div class="fixed inset-0 z-[60] bg-surface-container-lowest dark:bg-surface-container-lowest shadow-xl flex-col p-margin-mobile divide-y divide-outline-variant transform translate-x-full transition-transform duration-300 ease-in-out hidden" id="mobile-nav-overlay">
+<div class="flex justify-between items-center pb-4">
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary-fixed flex items-center gap-2">
+                 [SHELL_ACCESS]
+            </div>
+<button class="text-on-surface hover:text-primary-fixed p-2 cursor-pointer active:scale-95 transition-transform" id="close-menu-btn">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<div class="py-4 text-on-surface-variant text-code-sm font-code-sm mb-4">
+            Cybersecurity &amp; Photography
+        </div>
+<nav class="flex flex-col gap-2 font-code-sm text-code-sm">
+<a class="text-on-surface-variant flex items-center gap-4 p-4 hover:bg-surface-variant hover:pl-6 transition-all duration-300 rounded-DEFAULT tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                Home
+            </a>
+<a class="text-on-surface-variant flex items-center gap-4 p-4 hover:bg-surface-variant hover:pl-6 transition-all duration-300 rounded-DEFAULT tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                About
+            </a>
+<a class="text-on-surface-variant flex items-center gap-4 p-4 hover:bg-surface-variant hover:pl-6 transition-all duration-300 rounded-DEFAULT tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                Cyber Security
+            </a>
+<a class="bg-secondary-container text-on-secondary-container font-bold flex items-center gap-4 p-4 rounded-xl hover:pl-6 transition-all duration-300 tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="photo_camera">photo_camera</span>
+                Photography
+            </a>
+<a class="text-on-surface-variant flex items-center gap-4 p-4 hover:bg-surface-variant hover:pl-6 transition-all duration-300 rounded-DEFAULT tap-highlight-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+                Contact
+            </a>
+</nav>
+<div class="mt-auto pt-4">
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-code-sm py-3 rounded-DEFAULT hover:bg-primary-fixed-dim transition-colors tap-highlight-transparent">
+                Download CV
+            </button>
+</div>
+</div>
+<script>
+        // Simple mobile menu toggle logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNavOverlay.classList.remove('hidden');
+            // Small delay to allow display:block to apply before animating transform
+            setTimeout(() => {
+                mobileNavOverlay.classList.remove('translate-x-full');
+            }, 10);
+        });
+
+        closeMenuBtn.addEventListener('click', () => {
+            mobileNavOverlay.classList.add('translate-x-full');
+            setTimeout(() => {
+                mobileNavOverlay.classList.add('hidden');
+            }, 300);
+        });
+    </script>
+</body></html>

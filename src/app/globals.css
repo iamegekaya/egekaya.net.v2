@@ -1,0 +1,668 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #050505;
+  --foreground: #f5f7f2;
+  --accent: #8bf5c7;
+  --panel-background: rgba(7, 13, 11, 0.88);
+  --panel-border: rgba(139, 245, 199, 0.12);
+  --panel-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  --surface-border-strong: rgba(255, 245, 224, 0.12);
+  --surface-border-footer: rgba(255, 245, 224, 0.14);
+  --surface-border-medium: rgba(255, 245, 224, 0.1);
+  --surface-border-subtle: rgba(255, 245, 224, 0.08);
+  --surface-panel-bg: rgba(7, 13, 11, 0.76);
+  --surface-footer-bg: rgba(7, 13, 11, 0.84);
+  --surface-callout-bg: rgba(7, 13, 11, 0.86);
+  --surface-card-bg: rgba(6, 10, 9, 0.74);
+  --surface-card-bg-strong: rgba(6, 10, 9, 0.78);
+  --surface-input-bg: rgba(255, 255, 255, 0.04);
+  --surface-tile-bg: rgba(255, 255, 255, 0.03);
+  --surface-shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.36);
+  --surface-shadow-callout: 0 24px 80px rgba(0, 0, 0, 0.34);
+  --surface-shadow-footer: 0 18px 48px rgba(0, 0, 0, 0.28);
+  --surface-text-muted: rgba(245, 247, 242, 0.62);
+  --surface-text-subtle: rgba(245, 247, 242, 0.34);
+  --surface-text-footer: rgba(245, 247, 242, 0.84);
+  --surface-text-prominent: rgba(245, 247, 242, 0.88);
+  --surface-text-strong: rgba(245, 247, 242, 0.92);
+  --accent-border-focus: rgba(65, 176, 110, 0.45);
+  --accent-border-strong: rgba(65, 176, 110, 0.34);
+  --accent-bg-soft: rgba(65, 176, 110, 0.16);
+  --accent-bg-hover: rgba(65, 176, 110, 0.22);
+  --accent-bg-success: rgba(65, 176, 110, 0.12);
+  --callout-border-accent: rgba(65, 176, 110, 0.28);
+  --callout-gradient-start: rgba(65, 176, 110, 0.12);
+  --callout-gradient-end: rgba(33, 28, 106, 0.22);
+  --danger-border: rgba(255, 110, 110, 0.32);
+  --danger-bg: rgba(120, 22, 22, 0.22);
+  --danger-text: rgb(255, 170, 170);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+  background: var(--background);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  min-height: 100vh;
+  background: var(--background);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.site-canvas {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+/* DepthCarousel — ported from React Bits' DepthCarousel.css. Kept here rather
+   than in a component stylesheet because this project has no per-component CSS
+   files; the .sm-* menu rules follow the same pattern. */
+.depth-carousel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: var(--dc-perspective, 1400px);
+  perspective-origin: 50% 50%;
+  touch-action: pan-y;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+
+.depth-carousel:active {
+  cursor: grabbing;
+}
+
+.depth-carousel:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, white);
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+
+.depth-carousel__stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.depth-carousel__card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  overflow: hidden;
+  background: #0b0d12;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.65),
+    0 8px 20px -10px rgba(0, 0, 0, 0.5);
+  will-change: transform, opacity, filter;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.depth-carousel__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.depth-carousel__tint {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.depth-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3000;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--surface-border-strong);
+  border-radius: 999px;
+  background: var(--surface-panel-bg);
+  backdrop-filter: blur(8px);
+  color: var(--foreground);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.depth-carousel__arrow:hover {
+  border-color: var(--accent-border-strong);
+  color: var(--accent);
+}
+
+.depth-carousel__arrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+.depth-carousel__arrow:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, white);
+  outline-offset: 3px;
+}
+
+.depth-carousel__arrow--prev {
+  left: 16px;
+}
+
+.depth-carousel__arrow--next {
+  right: 16px;
+}
+
+.depth-carousel__dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3000;
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--surface-footer-bg);
+  backdrop-filter: blur(6px);
+}
+
+.depth-carousel__dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--surface-text-subtle);
+  cursor: pointer;
+  transition:
+    width 0.25s ease,
+    background 0.25s ease;
+}
+
+.depth-carousel__dot.is-active {
+  width: 20px;
+  background: var(--accent);
+}
+
+.depth-carousel__dot:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, white);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .depth-carousel__card {
+    will-change: auto;
+  }
+
+  .depth-carousel__arrow,
+  .depth-carousel__dot {
+    transition: none;
+  }
+}
+
+.site-skip-link {
+  position: fixed;
+  top: -6rem;
+  left: 1rem;
+  z-index: 60;
+  padding: 0.75rem 1.1rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--accent-border-strong);
+  background: var(--surface-panel-bg);
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(16px);
+  transition: top 150ms ease;
+}
+
+/* `:focus`, not `:focus-visible` -- a skip link must reveal itself on any
+   focus, including focus moved programmatically. */
+.site-skip-link:focus {
+  top: 1rem;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+/* No min-height here on purpose. This rule is unlayered, so `min-height: 100vh`
+   beat the element's own `min-h-[100svh]` utility and undid the point of using
+   svh on mobile, where 100vh overshoots by the address bar. Height now comes
+   from the utilities alone. */
+.home-main {
+  position: relative;
+  z-index: 1;
+}
+
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+/* FaultyTerminal -- ported from React Bits' FaultyTerminal.css, same reason
+   DepthCarousel's rules live here instead of a per-component stylesheet. */
+.faulty-terminal-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.faulty-terminal-container canvas {
+  display: block;
+}
+
+/* MaskedHeading -- ported from React Bits' MaskedHeading.css. */
+.masked-heading {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-wrap: balance;
+  -webkit-font-smoothing: antialiased;
+}
+
+.masked-heading__measure {
+  color: transparent;
+}
+
+.masked-heading__word {
+  display: inline-block;
+  white-space: pre;
+}
+
+.masked-heading__word:not(:last-child)::after {
+  content: " ";
+}
+
+.masked-heading__baseline {
+  display: inline-block;
+  width: 0;
+  height: 0;
+}
+
+.masked-heading__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.masked-heading__reveal {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.masked-heading__clip {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.masked-heading__media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  will-change: transform, filter;
+}
+
+.masked-heading__source {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.site-page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  padding: 8rem 1.5rem 3rem;
+}
+
+.site-page-eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.site-page-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.02;
+  max-width: 12ch;
+}
+
+/* BubbleMenu -- ported from React Bits' BubbleMenu.css. Z-index kept below
+   .site-skip-link's 60 (see below) so a keyboard user tabbing to the skip
+   link before touching the menu still sees it above the logo bubble, which
+   sits in the same top-left corner. */
+.bubble-menu {
+  left: 0;
+  right: 0;
+  top: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 2em;
+  pointer-events: none;
+  z-index: 45;
+}
+
+.bubble-menu.fixed {
+  position: fixed;
+}
+
+.bubble-menu.absolute {
+  position: absolute;
+}
+
+.bubble-menu .bubble {
+  --bubble-size: 48px;
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+  border-radius: 50%;
+  box-shadow: var(--surface-shadow-lg);
+  border: 1px solid var(--surface-border-strong);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  backdrop-filter: blur(16px);
+}
+
+.bubble-menu .logo-bubble,
+.bubble-menu .toggle-bubble {
+  will-change: transform;
+}
+
+.bubble-menu .logo-bubble {
+  width: auto;
+  min-height: var(--bubble-size);
+  height: var(--bubble-size);
+  padding: 0 16px;
+  border-radius: calc(var(--bubble-size) / 2);
+  gap: 8px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.bubble-menu .toggle-bubble {
+  width: var(--bubble-size);
+  height: var(--bubble-size);
+}
+
+.bubble-menu .logo-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.bubble-menu .menu-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.bubble-menu .menu-line {
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  display: block;
+  margin: 0 auto;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.bubble-menu .menu-line + .menu-line {
+  margin-top: 6px;
+}
+
+.bubble-menu .menu-btn.open .menu-line:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.bubble-menu .menu-btn.open .menu-line:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.bubble-menu .logo-bubble:focus-visible,
+.bubble-menu .toggle-bubble:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, white);
+  outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .bubble-menu .bubble {
+    --bubble-size: 56px;
+  }
+
+  .bubble-menu .logo-bubble {
+    padding: 0 16px;
+  }
+}
+
+.bubble-menu-items {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 44;
+}
+
+.bubble-menu-items.fixed {
+  position: fixed;
+}
+
+.bubble-menu-items.absolute {
+  position: absolute;
+}
+
+.bubble-menu-items .pill-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  row-gap: 4px;
+  width: 100%;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+  pointer-events: auto;
+  justify-content: stretch;
+}
+
+.bubble-menu-items .pill-list .pill-col {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex: 0 0 calc(100% / 3);
+  box-sizing: border-box;
+}
+
+.bubble-menu-items .pill-link {
+  --pill-bg: var(--surface-panel-bg);
+  --pill-color: var(--foreground);
+  --item-rot: 0deg;
+  --pill-min-h: 160px;
+  --hover-bg: var(--accent-bg-hover);
+  --hover-color: var(--foreground);
+  width: 100%;
+  min-height: var(--pill-min-h);
+  padding: clamp(1.5rem, 3vw, 8rem) 0;
+  font-size: clamp(1.5rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 0;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  color: var(--pill-color);
+  text-decoration: none;
+  box-shadow: var(--surface-shadow-lg);
+  border: 1px solid var(--surface-border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+  will-change: transform;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 10px;
+}
+
+.bubble-menu-items .pill-link:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 72%, white);
+  outline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .bubble-menu-items .pill-link {
+    transform: rotate(var(--item-rot));
+  }
+
+  .bubble-menu-items .pill-link:hover,
+  .bubble-menu-items .pill-link:focus-visible {
+    transform: rotate(var(--item-rot)) scale(1.06);
+    background: var(--hover-bg);
+    color: var(--hover-color);
+  }
+
+  .bubble-menu-items .pill-link:active {
+    transform: rotate(var(--item-rot)) scale(0.94);
+  }
+}
+
+.bubble-menu-items .pill-link .pill-label {
+  display: inline-block;
+  will-change: transform, opacity;
+  height: 1.2em;
+  line-height: 1.2;
+}
+
+@media (max-width: 899px) {
+  .bubble-menu-items {
+    align-items: flex-start;
+    padding-top: 120px;
+    /* 7 nav items x ~80px pills + gaps run past 600px, taller than most
+       phone viewports. The overlay is position:fixed with no other scroll
+       path, so without this the bottom items (Contact included) are simply
+       unreachable. */
+    overflow-y: auto;
+    padding-bottom: 2rem;
+  }
+
+  .bubble-menu-items .pill-list {
+    row-gap: 16px;
+  }
+
+  .bubble-menu-items .pill-list .pill-col {
+    flex: 0 0 100%;
+    overflow: visible;
+  }
+
+  .bubble-menu-items .pill-link {
+    font-size: clamp(1.2rem, 3vw, 4rem);
+    padding: clamp(1rem, 2vw, 2rem) 0;
+    min-height: 80px;
+  }
+
+  .bubble-menu-items .pill-link:hover,
+  .bubble-menu-items .pill-link:focus-visible {
+    transform: scale(1.06);
+    background: var(--hover-bg);
+    color: var(--hover-color);
+  }
+
+  .bubble-menu-items .pill-link:active {
+    transform: scale(0.94);
+  }
+}
+
+@media (max-width: 640px) {
+  .bubble-menu {
+    padding: 0 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-page {
+    padding: 7rem 1rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-page-title {
+    max-width: none;
+  }
+}
