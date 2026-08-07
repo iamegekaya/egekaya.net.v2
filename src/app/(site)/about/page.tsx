@@ -39,7 +39,27 @@ const educationTimeline = [
   { date: "2008 — 2013", title: "Elementary School", detail: "Lüleburgaz Elementary School" },
 ];
 
-const techStack = ["Zero Trust", "Docker", "Cloudflare", "n8n", "Tailscale"];
+// Drawn from TECH-INVENTORY.md, which surveys the four projects and the
+// GitHub repositories. Ordered security concept -> infrastructure -> security
+// tooling -> languages and data, so the list reads as a stack rather than an
+// alphabetised pile. Python and FastAPI are deliberately absent per Ege, even
+// though the inventory shows Python is the largest language across his work.
+const techStack = [
+  "Zero Trust",
+  "Linux",
+  "Docker",
+  "Cloudflare",
+  "Tailscale",
+  "Pi-hole",
+  "n8n",
+  "Nmap",
+  "Nuclei",
+  "OWASP ZAP",
+  "Go",
+  "TypeScript",
+  "Next.js",
+  "PostgreSQL",
+];
 
 export default function AboutPage() {
   return (
