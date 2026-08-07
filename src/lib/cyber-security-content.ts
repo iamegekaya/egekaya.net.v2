@@ -1,3 +1,14 @@
+export const activeSystems = [
+  "Linux: Ubuntu (Server and Client Management)",
+  "macOS: Development and Analysis Environment",
+  "Windows: 11 Pro (Corporate Structure Simulations)",
+];
+
+export const operatingSystemExperience = [
+  "Security-focused systems: Kali Linux, Parrot OS",
+  "Server and desktop systems: CentOS, Fedora, Linux Mint, Windows 10 / 7 / Vista",
+];
+
 export const securityPrinciples = [
   {
     label: "Principle",

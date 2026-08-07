@@ -10,13 +10,13 @@ import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD } from "@/lib/typography";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Personal background, education, and interests of Ege Kaya — born 2003 in Lüleburgaz, cyber security engineer and photographer based in Istanbul.",
+    "Personal background, education, and interests of Ege Kaya — born 2003 in Lüleburgaz, working in information security and photography, based in Istanbul.",
   alternates: { canonical: "/about" },
   openGraph: {
     ...openGraphSiteDefaults,
     title: "About — Ege Kaya",
     description:
-      "Personal background, education, and interests of Ege Kaya — cyber security engineer and photographer.",
+      "Personal background, education, and interests of Ege Kaya — information security and photography.",
     url: "/about",
     type: "profile",
     images: openGraphImage,
@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About — Ege Kaya",
     description:
-      "Personal background, education, and interests — cyber security engineer and photographer.",
+      "Personal background, education, and interests — information security and photography.",
     images: twitterImage,
   },
 };
 
 const educationTimeline = [
-  { date: "2022 — Present", title: "B.S. Cybersecurity", detail: "Yeditepe University", current: true },
+  { date: "2022 — Present", title: "B.S. Information Security", detail: "Yeditepe University", current: true },
   { date: "2021 — 2022", title: "Preparatory School", detail: "Yeditepe University" },
   { date: "2019 — 2021", title: "High School", detail: "Lüleburgaz Bahçeşehir Anatolian High School" },
   { date: "2017 — 2019", title: "High School", detail: "Lüleburgaz Anatolian High School" },
@@ -39,7 +39,7 @@ const educationTimeline = [
   { date: "2008 — 2013", title: "Elementary School", detail: "Lüleburgaz Elementary School" },
 ];
 
-const techStack = ["Zero Trust", "Docker", "Cloudflare", "n8n", "Tailscale", "Python"];
+const techStack = ["Zero Trust", "Docker", "Cloudflare", "n8n", "Tailscale"];
 
 export default function AboutPage() {
   return (
@@ -48,7 +48,7 @@ export default function AboutPage() {
         <header className="mb-10">
           <h1 className={`${TEXT_DISPLAY_LG} text-primary-fixed mb-4`}>whoami</h1>
           <p className="font-mono text-[14px] text-on-surface-variant">
-            [STATUS]: B.S. CYBERSECURITY — YEDITEPE UNIVERSITY, 2022–PRESENT
+            [STATUS]: B.S. INFORMATION SECURITY — YEDITEPE UNIVERSITY, 2022–PRESENT
           </p>
         </header>
 

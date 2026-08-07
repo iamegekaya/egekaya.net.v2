@@ -10,13 +10,13 @@ import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD, TEXT_LABEL_CAPS } from "@/lib/typogr
 export const metadata: Metadata = {
   title: "Photography",
   description:
-    "Photo essay and portfolio by Ege Kaya. Started November 2023 on Canon, moved through Sony A7M2, now shooting Fujifilm XM-5 + XC 15-45mm. 13 selected frames.",
+    "Photo essay and portfolio by Ege Kaya. Started November 2023 on Canon, moved through Sony A7M2, now shooting Fujifilm X-M5 + XC 15-45mm. 13 selected frames.",
   alternates: { canonical: "/photography" },
   openGraph: {
     ...openGraphSiteDefaults,
     title: "Photography — Ege Kaya",
     description:
-      "Photo essay and portfolio — Fujifilm XM-5, started November 2023, 13 selected frames.",
+      "Photo essay and portfolio — Fujifilm X-M5, started November 2023, 13 selected frames.",
     url: "/photography",
     type: "article",
     images: openGraphImage,
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Photography — Ege Kaya",
     description:
-      "Photo essay and portfolio — Fujifilm XM-5, started November 2023, 13 selected frames.",
+      "Photo essay and portfolio — Fujifilm X-M5, started November 2023, 13 selected frames.",
     images: twitterImage,
   },
 };
@@ -59,14 +59,14 @@ const portfolioPhotos = readPortfolioPhotos();
 
 const equipment = [
   {
-    name: "Fujifilm XM-5 Body",
+    name: "Fujifilm X-M5 Body",
     href: "https://www.fujifilm-x.com/en-us/products/cameras/x-m5/",
     note: "My current camera body.",
   },
   {
     name: "Fujinon XC 15-45mm f/3.5-5.6 OIS PZ Lens",
     href: "https://www.fujifilm-x.com/global/products/lenses/xc15-45mmf35-56-ois-pz/",
-    note: "The lens currently paired with the XM-5.",
+    note: "The lens currently paired with the X-M5.",
   },
 ];
 
@@ -94,7 +94,7 @@ export default function PhotographyPage() {
           </p>
           <p className="font-sans text-[15px] leading-relaxed text-on-surface-variant">
             I bought my first camera, a Canon Rebel T7, on November 8, 2023. From there I moved through a Sony
-            A7M2 before landing on the Fujifilm XM-5 I currently shoot with.
+            A7M2 before landing on the Fujifilm X-M5 I currently shoot with.
           </p>
         </TerminalWindow>
 

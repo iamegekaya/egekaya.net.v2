@@ -3,7 +3,12 @@ import type { Metadata } from "next";
 import TerminalWindow from "@/components/ui/terminal-window";
 import { openGraphImage, openGraphSiteDefaults, twitterImage } from "@/lib/seo-image";
 import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD, TEXT_LABEL_CAPS } from "@/lib/typography";
-import { architectureSections, securityPrinciples } from "@/lib/cyber-security-content";
+import {
+  activeSystems,
+  architectureSections,
+  operatingSystemExperience,
+  securityPrinciples,
+} from "@/lib/cyber-security-content";
 
 export const metadata: Metadata = {
   title: "Cyber Security",
@@ -33,6 +38,13 @@ const projectSlots = [1, 2, 3];
 const CARD_CLASS_NAME =
   "glow-border flex flex-col gap-4 rounded-lg border border-outline-variant bg-surface p-6 transition-colors";
 
+const SYSTEM_LIST_CLASS_NAME = "mt-auto flex flex-col gap-2";
+
+// Shared by the system lists and the architecture bullets so the two read as
+// one kind of terminal-style entry.
+const SYSTEM_ITEM_CLASS_NAME =
+  "rounded border border-outline-variant/60 bg-surface-container-lowest px-3 py-2 font-mono text-[13px] leading-relaxed text-on-surface-variant";
+
 export default function CyberSecurityPage() {
   return (
     <main className="site-page">
@@ -59,6 +71,42 @@ export default function CyberSecurityPage() {
           ))}
         </section>
 
+        <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className={CARD_CLASS_NAME}>
+            <h2 className={`${TEXT_HEADLINE_MD} text-on-surface border-b border-outline-variant pb-2`}>
+              Actively Used Systems
+            </h2>
+            <p className="font-sans text-[15px] leading-relaxed text-on-surface-variant">
+              These are the environments I actively use for administration, development, simulation, and
+              analysis.
+            </p>
+            <ul className={SYSTEM_LIST_CLASS_NAME}>
+              {activeSystems.map((system) => (
+                <li key={system} className={SYSTEM_ITEM_CLASS_NAME}>
+                  {system}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className={CARD_CLASS_NAME}>
+            <h2 className={`${TEXT_HEADLINE_MD} text-on-surface border-b border-outline-variant pb-2`}>
+              System Experience
+            </h2>
+            <p className="font-sans text-[15px] leading-relaxed text-on-surface-variant">
+              I have worked across multiple desktop, server, and security-focused operating systems to
+              understand different behaviors and deployment patterns.
+            </p>
+            <ul className={SYSTEM_LIST_CLASS_NAME}>
+              {operatingSystemExperience.map((system) => (
+                <li key={system} className={SYSTEM_ITEM_CLASS_NAME}>
+                  {system}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         <section className="flex flex-col gap-6">
           <h2 className={`${TEXT_HEADLINE_MD} text-on-surface border-b border-outline-variant pb-2`}>
             Technical Infrastructure &amp; Architecture
@@ -71,10 +119,7 @@ export default function CyberSecurityPage() {
                 <p className="font-sans text-[15px] leading-relaxed text-on-surface-variant">{section.intro}</p>
                 <ul className="flex flex-col gap-2">
                   {section.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="rounded border border-outline-variant/60 bg-surface-container-lowest px-3 py-2 font-mono text-[13px] leading-relaxed text-on-surface-variant"
-                    >
+                    <li key={bullet} className={SYSTEM_ITEM_CLASS_NAME}>
                       {bullet}
                     </li>
                   ))}

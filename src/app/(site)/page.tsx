@@ -7,13 +7,13 @@ import { openGraphImage, openGraphSiteDefaults, twitterImage } from "@/lib/seo-i
 
 export const metadata: Metadata = {
   description:
-    "Ege Kaya — cyber security engineer and photographer. Interactive profile, work, and contact on one page.",
+    "Ege Kaya — information security and photography. Zero Trust infrastructure, SecOps automation, and a photo portfolio.",
   alternates: { canonical: "/" },
   openGraph: {
     ...openGraphSiteDefaults,
     title: "egekaya.net",
     description:
-      "Cyber security engineer and photographer. Interactive profile, work, and contact.",
+      "Information security and photography. Zero Trust infrastructure, SecOps automation, and a photo portfolio.",
     url: "/",
     type: "website",
     images: openGraphImage,
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "egekaya.net",
     description:
-      "Cyber security engineer and photographer. Interactive profile, work, and contact.",
+      "Information security and photography. Zero Trust infrastructure, SecOps automation, and a photo portfolio.",
     images: twitterImage,
   },
 };
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 // (aria-hidden, no information conveyed), a static string avoids a
 // server/client hydration mismatch for zero visual difference.
 const HEX_DUMP =
-  "790082998EC2CAAD48764F67C631A0436C421A3F7606054003EC342397B94A42FDE71B3CA2855F61C6F8D080CBD1D2FOAE4F6E9B36AAE0984C89A020BE11037C23275DE742FE302E09FA3978079491C6D973833FA250814AFED28D667748F6D195565F0E174A7152C55EA228817691BA65A08F863841982F778689EA10FA87A9806884F8983497C0A929061E85D76CA88C5AED1D0456F0EDF96F83A02E7E0F340F85CF7025DFA5E46888";
+  "790082998EC2CAAD48764F67C631A0436C421A3F7606054003EC342397B94A42FDE71B3CA2855F61C6F8D080CBD1D2F0AE4F6E9B36AAE0984C89A020BE11037C23275DE742FE302E09FA3978079491C6D973833FA250814AFED28D667748F6D195565F0E174A7152C55EA228817691BA65A08F863841982F778689EA10FA87A9806884F8983497C0A929061E85D76CA88C5AED1D0456F0EDF96F83A02E7E0F340F85CF7025DFA5E46888";
 
 export default function HomePage() {
   return (
@@ -90,7 +90,7 @@ export default function HomePage() {
               <div className="relative z-10 mt-auto flex items-end justify-between">
                 <h3 className="font-sans text-[18px] text-on-surface">Visual Perspectives</h3>
                 <span className="font-mono text-[10px] tracking-widest text-on-surface-variant uppercase">
-                  Fujifilm XM-5
+                  Fujifilm X-M5
                 </span>
               </div>
             </div>

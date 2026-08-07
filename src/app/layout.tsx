@@ -35,16 +35,24 @@ const siteUrl = process.env.APP_URL?.replace(/\/$/, "") ?? "https://egekaya.net"
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "egekaya.net",
+  // The name carries the title rather than the domain: almost all search
+  // traffic to a personal site is a name query, and unlike the description
+  // the title is an actual ranking signal.
   title: {
-    default: "egekaya.net",
-    template: "%s — egekaya.net",
+    default: "Ege Kaya — Information Security & Photography",
+    template: "%s — Ege Kaya",
   },
-  description: "Cyber security engineer and photography portfolio.",
+  description: "Information security and photography portfolio.",
   authors: [{ name: "Ege Kaya", url: siteUrl }],
   creator: "Ege Kaya",
+  // Google has ignored the keywords meta tag since 2009, so this earns nothing
+  // on ranking. Kept only because a few smaller engines still read it and it
+  // costs one tag; the terms track the degree name rather than contradicting it.
   keywords: [
     "egekaya",
     "Ege Kaya",
+    "information security",
+    "bilgi güvenliği",
     "cyber security",
     "siber güvenlik",
     "photography",
@@ -66,7 +74,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     title: "egekaya.net",
-    description: "Cyber security engineer and photography portfolio.",
+    description: "Information security and photography portfolio.",
     images: [
       {
         url: "/opengraph-image",
@@ -79,7 +87,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "egekaya.net",
-    description: "Cyber security engineer and photography portfolio.",
+    description: "Information security and photography portfolio.",
     images: ["/twitter-image"],
   },
   robots: {
