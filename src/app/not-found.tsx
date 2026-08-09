@@ -1,30 +1,59 @@
 import Link from "next/link";
 
-import TerminalWindow from "@/components/ui/terminal-window";
-import { TEXT_DISPLAY_LG } from "@/lib/typography";
+import RootDocument from "@/components/site/root-document";
 
-// Renders outside the (site) layout, so the background and the way back to
-// the site are provided here rather than inherited.
+import "./globals.css";
+
+import TerminalWindow from "@/components/ui/terminal-window";
+import { TEXT_DISPLAY_LG, TEXT_LABEL_CAPS } from "@/lib/typography";
+
+// With two root layouts, an unmatched URL has no layout to inherit at all --
+// so this file supplies the whole document, not just the page. English is the
+// default locale and a 404 has no locale of its own to read.
+//
+// The trace-log framing comes from a Stitch mockup, rebuilt on the site's own
+// tokens and components. The mockup shipped a Tailwind CDN script, Google Fonts
+// links, and a single dead anchor; none of that survives the port.
 export default function NotFound() {
   return (
+    <RootDocument locale="en">
     <div className="site-canvas">
       <div className="site-grid-bg" aria-hidden="true" />
 
       <main className="site-page">
         <div className="site-page-inner flex max-w-2xl flex-col">
-          <TerminalWindow bodyClassName="p-6 md:p-8">
-            <p className="font-mono text-[13px] tracking-[0.1em] text-primary-fixed uppercase">Error 404</p>
-            <h1 className={`${TEXT_DISPLAY_LG} text-on-surface mt-2 mb-4`}>Page Not Found</h1>
-            <p className="font-sans text-[16px] leading-relaxed text-on-surface-variant">
-              The page you are looking for does not exist or has been moved.
+          <TerminalWindow title="SYSTEM_FAILURE_NODE_0x404" bodyClassName="p-6 md:p-8">
+            <h1 className={`${TEXT_DISPLAY_LG} glitch-text text-on-surface`}>404 // ERROR_NOT_FOUND</h1>
+            <p className={`${TEXT_LABEL_CAPS} text-primary-fixed mt-3`}>
+              &gt; System warning: critical exception in sub-routine
             </p>
+
+            <div className="border-outline-variant bg-surface-container-lowest mt-6 flex flex-col gap-2 rounded border px-4 py-4">
+              <p className="font-sans text-[15px] leading-relaxed text-on-surface">
+                <span className="text-primary-fixed font-medium">Access denied:</span> the requested node
+                does not exist in this subnet.
+              </p>
+              <p className="font-mono text-[13px] leading-relaxed text-on-surface-variant">
+                &gt; TRACE: attempting to resolve path... <span className="text-error">[FAILED]</span>
+              </p>
+              <p className="font-mono text-[13px] leading-relaxed text-on-surface-variant">
+                &gt; REASON: dead link or unauthorized access vector.
+              </p>
+              {/* The prompt text is static; only the block cursor after it blinks.
+                  Reuses .terminal-cursor, the same hard step-end blink the home
+                  hero uses, rather than fading the whole line. aria-hidden so a
+                  screen reader is not read a decorative prompt. */}
+              <p className="font-mono text-[13px] text-primary-fixed" aria-hidden="true">
+                &gt; _<span className="terminal-cursor ml-1" />
+              </p>
+            </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/"
                 className="rounded-sm border border-primary-fixed bg-primary-fixed/10 px-4 py-3 font-mono text-[14px] text-on-surface transition-colors hover:bg-primary-fixed/20 hover:text-primary-fixed"
               >
-                Back to home
+                Return to root
               </Link>
               <Link
                 href="/contact"
@@ -37,5 +66,6 @@ export default function NotFound() {
         </div>
       </main>
     </div>
+    </RootDocument>
   );
 }

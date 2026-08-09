@@ -35,6 +35,34 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
+export function HomeIcon(props: IconProps) {
+  return (
+    <svg {...BASE_PROPS} {...props}>
+      <path d="M3 10.5 12 3l9 7.5" />
+      <path d="M5.5 9.5V20a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.5" />
+      <path d="M9.5 21v-6h5v6" />
+    </svg>
+  );
+}
+
+export function PersonIcon(props: IconProps) {
+  return (
+    <svg {...BASE_PROPS} {...props}>
+      <circle cx="12" cy="8" r="3.5" />
+      <path d="M4.5 20.5a7.5 7.5 0 0 1 15 0" />
+    </svg>
+  );
+}
+
+export function MailIcon(props: IconProps) {
+  return (
+    <svg {...BASE_PROPS} {...props}>
+      <rect x="3" y="5" width="18" height="14" rx="1.5" />
+      <path d="m3.5 6.5 8.5 6 8.5-6" />
+    </svg>
+  );
+}
+
 export function TerminalIcon(props: IconProps) {
   return (
     <svg {...BASE_PROPS} {...props}>

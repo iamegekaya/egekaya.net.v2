@@ -55,6 +55,11 @@
   --grid-line: rgba(255, 255, 255, 0.05);
   --terminal-dot-red: #ff5f56;
   --terminal-dot-yellow: #ffbd2e;
+
+  /* Hover halo for .glow-border. Themed rather than hardcoded: the light branch
+     needs a different colour entirely, and this was the one value in the file
+     that bypassed the token system. */
+  --glow-accent: rgba(114, 255, 112, 0.2);
 }
 
 :root[data-theme="light"] {
@@ -97,6 +102,11 @@
   --grid-line: rgba(0, 0, 0, 0.06);
   --terminal-dot-red: #ff5f56;
   --terminal-dot-yellow: #ffbd2e;
+
+  /* The light accent is nearly black-green, so a glow of it reads as a soft
+     depth shadow rather than a colour. That is the intended effect here: a
+     neon halo would fight the muted palette this theme deliberately chose. */
+  --glow-accent: rgba(27, 48, 34, 0.18);
 }
 
 @theme {
@@ -273,6 +283,39 @@ button {
   }
 }
 
+/* The 404 headline jitters like a failing display. Two pixels every three
+   seconds -- large enough to read as a fault, small enough not to hurt to look
+   at. It is pure ornament, so reduced motion removes it outright rather than
+   softening it. */
+.glitch-text {
+  animation: glitch-shift 3s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-text {
+    animation: none;
+  }
+}
+
+@keyframes glitch-shift {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
 .glow-border {
   transition:
     border-color 0.3s ease,
@@ -282,7 +325,7 @@ button {
 .glow-border:hover,
 .glow-border:focus-within {
   border-color: var(--primary-fixed);
-  box-shadow: 0 0 10px rgba(114, 255, 112, 0.2);
+  box-shadow: 0 0 10px var(--glow-accent);
 }
 
 /* Terminal-styled underline inputs (contact form). */

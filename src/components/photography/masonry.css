@@ -1,0 +1,71 @@
+/* React Bits <Masonry /> — component styles.
+   Kept as its own file so the upstream component stays recognisable and easy to
+   diff against the source when React Bits updates it. Class names are prefixed
+   to avoid colliding with the site's own utilities. */
+
+/* Height is set inline from the tallest packed column. Upstream ships
+   `height: 100%` here, which collapses to zero because every child is
+   absolutely positioned, letting the rest of the page draw over the gallery. */
+.rb-masonry-list {
+  position: relative;
+  width: 100%;
+}
+
+.rb-masonry-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 6px;
+  cursor: pointer;
+  will-change: transform, width, height, opacity;
+}
+
+.rb-masonry-item:focus-visible {
+  outline: 2px solid var(--primary-fixed);
+  outline-offset: -2px;
+  border-radius: 12px;
+}
+
+/* `contain`, not upstream's `cover`. The box is already sized to the photo's
+   own ratio, so the two are equivalent -- except when sub-pixel rounding makes
+   them disagree by a fraction. There `cover` shaves the frame and `contain`
+   leaves a hairline of transparent padding, which is the failure worth having
+   on a photography page. */
+.rb-masonry-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 10px;
+  box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.2);
+
+  /* Grayscale until hover, carried over from the previous gallery.
+     Deliberately on this inner layer: GSAP animates `filter: blur()` on the
+     wrapper above, and two filters on one element would overwrite each other. */
+  filter: grayscale(1);
+  transition: filter 700ms ease-in-out;
+}
+
+.rb-masonry-item:hover .rb-masonry-img,
+.rb-masonry-item:focus-visible .rb-masonry-img {
+  filter: grayscale(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rb-masonry-img {
+    transition: none;
+  }
+}
+
+/* The grid is positioned by GSAP, so it cannot simply be switched off. Under
+   reduced motion the component skips the entrance tween and jumps items
+   straight to their final position instead — see prefersReducedMotion in
+   masonry.tsx. This rule covers the hover scale, which is pure CSS-adjacent
+   polish and safe to drop outright. */
+@media (prefers-reduced-motion: reduce) {
+  .rb-masonry-item {
+    transition: none;
+  }
+}

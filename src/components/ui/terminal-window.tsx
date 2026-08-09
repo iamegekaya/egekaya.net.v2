@@ -6,7 +6,8 @@ import type { ReactNode } from "react";
  * screens. One component rather than copy-pasted dot markup in each.
  */
 type TerminalWindowProps = {
-  title?: string;
+  /** ReactNode rather than string so a caller can pass an animated title. */
+  title?: ReactNode;
   children: ReactNode;
   className?: string;
   bodyClassName?: string;

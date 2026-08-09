@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import type { Dictionary } from "@/i18n";
+
 type SocialLink = {
   label: string;
   href: string;
@@ -43,12 +45,12 @@ const socialLinks: SocialLink[] = [
   },
 ];
 
-export default function SiteFooter() {
+export default function SiteFooter({ dict }: { dict: Dictionary }) {
   return (
     <footer className="relative z-[1] mt-auto border-t border-outline-variant bg-surface-container-low">
       <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-4 px-4 py-8 text-center font-mono text-[14px] md:flex-row md:justify-between md:px-10 md:text-left">
         <span className="text-[15px] font-bold tracking-tighter text-on-surface">EGE_KAYA //</span>
-        <p className="text-on-surface-variant">© {new Date().getFullYear()} ROOT_USER. ENCRYPTED ACCESS ONLY.</p>
+        <p className="text-on-surface-variant">© {new Date().getFullYear()} {dict.footer.rights}</p>
         <div className="flex items-center gap-4 text-on-surface-variant">
           {socialLinks.map((item) => (
             <a

@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 
 import TerminalWindow from "@/components/ui/terminal-window";
+import type { Dictionary } from "@/i18n";
 
 type FormState = {
   name: string;
@@ -13,8 +14,6 @@ type FormState = {
 
 type SubmissionState = "idle" | "success" | "error";
 
-const GENERIC_ERROR =
-  "Something went wrong while sending your message. Please try again in a moment.";
 
 const INITIAL_FORM: FormState = {
   name: "",
@@ -25,7 +24,9 @@ const INITIAL_FORM: FormState = {
 
 const FIELD_LABEL_CLASS_NAME = "block mb-2 font-mono text-[12px] tracking-[0.1em] text-primary-fixed opacity-70 uppercase";
 
-export default function ContactForm() {
+export default function ContactForm({ dict }: { dict: Dictionary }) {
+  const t = dict.contact.form;
+  const GENERIC_ERROR = t.genericError;
   const formStartedAtRef = useRef(Date.now());
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
   const [submissionState, setSubmissionState] = useState<SubmissionState>("idle");
@@ -93,7 +94,7 @@ export default function ContactForm() {
         </label>
 
         <div>
-          <label className={FIELD_LABEL_CLASS_NAME}>TARGET_ID (Name)</label>
+          <label className={FIELD_LABEL_CLASS_NAME}>{t.nameLabel}</label>
           <input
             type="text"
             value={form.name}
@@ -103,12 +104,12 @@ export default function ContactForm() {
             required
             maxLength={120}
             className="terminal-field"
-            placeholder="Enter your designation..."
+            placeholder={t.namePlaceholder}
           />
         </div>
 
         <div>
-          <label className={FIELD_LABEL_CLASS_NAME}>RETURN_VECTOR (Email)</label>
+          <label className={FIELD_LABEL_CLASS_NAME}>{t.emailLabel}</label>
           <input
             type="email"
             value={form.email}
@@ -118,12 +119,12 @@ export default function ContactForm() {
             required
             maxLength={320}
             className="terminal-field"
-            placeholder="Enter routing address..."
+            placeholder={t.emailPlaceholder}
           />
         </div>
 
         <div>
-          <label className={FIELD_LABEL_CLASS_NAME}>PAYLOAD (Message)</label>
+          <label className={FIELD_LABEL_CLASS_NAME}>{t.messageLabel}</label>
           <textarea
             value={form.message}
             onChange={(event) => {
@@ -133,20 +134,20 @@ export default function ContactForm() {
             maxLength={5000}
             rows={5}
             className="terminal-field resize-none"
-            placeholder="Construct message payload here..."
+            placeholder={t.messagePlaceholder}
           />
         </div>
 
         <div className="flex items-center justify-between pt-2">
           <span className="font-mono text-[12px] text-on-surface-variant/60">
-            {isSubmitting ? "> Transmitting..." : "> Awaiting input..."}
+            {isSubmitting ? t.transmitting : t.awaiting}
           </span>
           <button
             type="submit"
             disabled={isSubmitting}
             className="rounded-sm bg-primary-fixed px-6 py-3 font-mono text-[13px] tracking-widest text-on-primary-fixed uppercase transition-colors hover:bg-primary-fixed-dim disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isSubmitting ? "Sending..." : "Execute / Send"}
+            {isSubmitting ? t.submitting : t.submit}
           </button>
         </div>
       </form>
@@ -154,16 +155,16 @@ export default function ContactForm() {
       <div className="mt-4" aria-live="polite">
         {submissionState === "success" ? (
           <div className="rounded border border-primary-fixed/40 bg-primary-container/10 px-4 py-3 text-on-surface">
-            <p className="font-mono text-[12px] tracking-[0.1em] text-primary-fixed uppercase">Success:</p>
+            <p className="font-mono text-[12px] tracking-[0.1em] text-primary-fixed uppercase">{t.successLabel}</p>
             <p className="mt-2 font-sans text-[15px] leading-relaxed">
-              Your message has been sent successfully. I&apos;ll get back to you as soon as possible.
+              {t.successBody}
             </p>
           </div>
         ) : null}
 
         {submissionState === "error" ? (
           <div className="rounded border border-error/40 bg-error-container/20 px-4 py-3 text-on-surface">
-            <p className="font-mono text-[12px] tracking-[0.1em] text-error uppercase">Error:</p>
+            <p className="font-mono text-[12px] tracking-[0.1em] text-error uppercase">{t.errorLabel}</p>
             <p className="mt-2 font-sans text-[15px] leading-relaxed">{errorMessage}</p>
           </div>
         ) : null}

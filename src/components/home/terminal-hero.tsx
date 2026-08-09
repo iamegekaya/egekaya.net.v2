@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import TerminalWindow from "@/components/ui/terminal-window";
+import type { Dictionary } from "@/i18n";
 
 const ROLES = [
   "SOC Analyst (Tier 1)",
@@ -17,17 +18,21 @@ const ROLES = [
   "Infrastructure Security Engineer",
 ];
 
-const TYPED_LINES = [
-  "ROOT_USER@EGEKAYA:~$ whoami",
-  "",
-  "> Loading profile...",
-  "> Identity confirmed: Ege Kaya.",
-  `> Role: ${ROLES.join(", ")}.`,
-  "> Secondary process: Photography.",
-  "> Access granted.",
-];
-
-const FULL_TEXT = TYPED_LINES.join("\n");
+// Role titles stay in English in both locales: these are the job titles Ege is
+// actually applying for, and a Turkish reader searching for "SOC Analyst" will
+// search for exactly that. Translating them would help nobody.
+function buildScript(dict: Dictionary) {
+  const t = dict.home;
+  return [
+    t.prompt,
+    "",
+    t.loadingProfile,
+    t.identityConfirmed,
+    `${t.roleLabel} ${ROLES.join(", ")}.`,
+    t.secondaryProcess,
+    t.accessGranted,
+  ].join("\n");
+}
 
 // The role list roughly tripled the typed text, so the per-character delay is
 // derived from a target duration rather than fixed -- otherwise the wait grows
@@ -37,13 +42,19 @@ const FULL_TEXT = TYPED_LINES.join("\n");
 // degrading into an instant paste.
 const TYPING_DURATION_MS = 6000;
 const MIN_MS_PER_CHARACTER = 18;
-const MS_PER_CHARACTER = Math.max(
-  MIN_MS_PER_CHARACTER,
-  TYPING_DURATION_MS / FULL_TEXT.length,
-);
 
-export default function TerminalHero() {
+export default function TerminalHero({ dict }: { dict: Dictionary }) {
   const [typedLength, setTypedLength] = useState(0);
+
+  // Both derive from the dictionary now, so they moved inside the component.
+  // The pace is still computed from the finished length rather than fixed:
+  // the Turkish script is a different length and would otherwise type at a
+  // noticeably different speed.
+  const fullText = useMemo(() => buildScript(dict), [dict]);
+  const msPerCharacter = useMemo(
+    () => Math.max(MIN_MS_PER_CHARACTER, TYPING_DURATION_MS / fullText.length),
+    [fullText],
+  );
 
   useEffect(() => {
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -56,11 +67,11 @@ export default function TerminalHero() {
         index += 1;
         setTypedLength(index);
 
-        if (index >= FULL_TEXT.length) {
+        if (index >= fullText.length) {
           return;
         }
 
-        stepTimer = window.setTimeout(step, Math.random() * MS_PER_CHARACTER + MS_PER_CHARACTER * 0.5);
+        stepTimer = window.setTimeout(step, Math.random() * msPerCharacter + msPerCharacter * 0.5);
       };
 
       stepTimer = window.setTimeout(step, 600);
@@ -73,7 +84,7 @@ export default function TerminalHero() {
       window.clearTimeout(stepTimer);
 
       if (reducedMotionQuery.matches) {
-        setTypedLength(FULL_TEXT.length);
+        setTypedLength(fullText.length);
       } else {
         setTypedLength(0);
         runTypingLoop();
@@ -87,15 +98,15 @@ export default function TerminalHero() {
       reducedMotionQuery.removeEventListener("change", syncFromPreference);
       window.clearTimeout(stepTimer);
     };
-  }, []);
+  }, [fullText, msPerCharacter]);
 
-  const typed = FULL_TEXT.slice(0, typedLength);
-  const isTyping = typedLength < FULL_TEXT.length;
+  const typed = fullText.slice(0, typedLength);
+  const isTyping = typedLength < fullText.length;
 
   return (
     <TerminalWindow className="max-w-3xl" bodyClassName="p-6">
-      <p className="font-mono text-[14px] leading-relaxed text-on-surface-variant">Login: root</p>
-      <p className="font-mono text-[14px] leading-relaxed text-on-surface-variant mb-4">Password: *********</p>
+      <p className="font-mono text-[14px] leading-relaxed text-on-surface-variant">{dict.home.login}</p>
+      <p className="font-mono text-[14px] leading-relaxed text-on-surface-variant mb-4">{dict.home.password}</p>
       {/*
         The role list wraps to a different number of lines per breakpoint, so
         the finished height is reserved up front rather than letting the box
