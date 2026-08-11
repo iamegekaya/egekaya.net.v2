@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { SITE_URL } from "@/lib/site-url";
+
 /**
  * Metadata every page inherits, shared by both root layouts.
  *
@@ -7,10 +9,8 @@ import type { Metadata } from "next";
  * and (tr): two layouts needed the same base, and a second copy is how the two
  * would have drifted.
  */
-const siteUrl = process.env.APP_URL?.replace(/\/$/, "") ?? "https://egekaya.net";
-
 export const rootMetadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   applicationName: "egekaya.net",
   // The name carries the title rather than the domain: almost all search
   // traffic to a personal site is a name query, and unlike the description
@@ -20,7 +20,7 @@ export const rootMetadata: Metadata = {
     template: "%s — Ege Kaya",
   },
   description: "Information security and photography portfolio.",
-  authors: [{ name: "Ege Kaya", url: siteUrl }],
+  authors: [{ name: "Ege Kaya", url: SITE_URL }],
   creator: "Ege Kaya",
   // Google has ignored the keywords meta tag since 2009, so this earns nothing
   // on ranking. Kept only because a few smaller engines still read it and it
@@ -49,7 +49,7 @@ export const rootMetadata: Metadata = {
     type: "website",
     siteName: "egekaya.net",
     locale: "en_US",
-    url: siteUrl,
+    url: SITE_URL,
     title: "egekaya.net",
     description: "Information security and photography portfolio.",
     images: [

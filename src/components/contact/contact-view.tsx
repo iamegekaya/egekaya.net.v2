@@ -1,7 +1,6 @@
 import ContactForm from "@/components/contact/contact-form";
 import DecryptedText from "@/components/ui/decrypted-text";
 import { ArrowForwardIcon, KeyIcon } from "@/components/ui/icon";
-import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n";
 import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD, TEXT_LABEL_CAPS } from "@/lib/typography";
 
@@ -13,7 +12,7 @@ const externalNodes = [
   { label: "Instagram", href: "https://www.instagram.com/iamegekaya/" },
 ];
 
-export default function ContactView({ dict }: { dict: Dictionary; locale?: Locale }) {
+export default function ContactView({ dict }: { dict: Dictionary }) {
   const t = dict.contact;
 
   return (

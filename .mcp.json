@@ -6,6 +6,9 @@
         "shadcn@latest",
         "mcp"
       ]
+    },
+    "codebase-memory-mcp": {
+      "command": "codebase-memory-mcp"
     }
   }
 }

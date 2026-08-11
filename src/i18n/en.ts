@@ -20,7 +20,6 @@ export const en = {
     downloadCv: "Download CV",
     switchToLight: "Switch to light mode",
     switchToDark: "Switch to dark mode",
-    languageLabel: "Language",
     switchToTurkish: "Türkçe'ye geç",
     switchToEnglish: "Switch to English",
   },
@@ -58,7 +57,7 @@ export const en = {
     metaDescription:
       "Personal background, education, and interests of Ege Kaya — born 2003 in Lüleburgaz, working in information security and photography, based in Istanbul.",
     heading: "whoami",
-    status: "[STATUS]: B.S. INFORMATION SECURITY — YEDITEPE UNIVERSITY, 2022–PRESENT",
+    status: "[STATUS]: B.S. INFORMATION SECURITY — YEDITEPE UNIVERSITY, 2022–2026",
     biographyHeading: "> ./biography.sh",
     biographyOne:
       "Hello! My name is Ege, and I am 22 years old. I was born on July 11, 2003, in the Lüleburgaz district of Kırklareli. I am part of the last generation that grew up playing soccer in the streets and playing cards and marbles.",
@@ -66,7 +65,6 @@ export const en = {
       "I first encountered my first computer in 2011; since that day, technology has become an integral part of my life. My interest in technology deepened during university, and in short, I enjoy working with technology, creating things, and learning something new every day. Outside of that I follow Formula 1, support Fenerbahçe, and like exploring cities and museums.",
     educationHeading: "Education Timeline",
     education: {
-      present: "2022 — Present",
       degree: "B.S. Information Security",
       prep: "Preparatory School",
       highSchool: "High School",
@@ -414,18 +412,6 @@ export const en = {
       errorLabel: "Error:",
       genericError: "Something went wrong while sending your message. Please try again in a moment.",
     },
-  },
-
-  notFound: {
-    title: "404 // ERROR_NOT_FOUND",
-    warning: "> System warning: critical exception in sub-routine",
-    accessDenied: "Access denied:",
-    accessDeniedRest: "the requested node does not exist in this subnet.",
-    trace: "> TRACE: attempting to resolve path...",
-    traceFailed: "[FAILED]",
-    reason: "> REASON: dead link or unauthorized access vector.",
-    returnToRoot: "Return to root",
-    contact: "Contact",
   },
 };
 

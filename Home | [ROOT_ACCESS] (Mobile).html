@@ -1,0 +1,313 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SEC_PHOTO // Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#a1d494",
+                      "error-container": "#93000a",
+                      "on-primary-fixed": "#002203",
+                      "on-secondary-fixed": "#002201",
+                      "on-tertiary": "#313030",
+                      "primary": "#ebffe2",
+                      "on-surface-variant": "#b9ccb2",
+                      "primary-fixed": "#72ff70",
+                      "surface": "#121414",
+                      "on-tertiary-fixed-variant": "#474646",
+                      "surface-container": "#1f2020",
+                      "outline-variant": "#3b4b37",
+                      "surface-bright": "#383939",
+                      "on-secondary": "#0a3909",
+                      "on-secondary-container": "#90c283",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "on-primary-container": "#007117",
+                      "primary-container": "#00ff41",
+                      "surface-variant": "#343535",
+                      "tertiary-container": "#dfdcdb",
+                      "inverse-surface": "#e3e2e2",
+                      "on-secondary-fixed-variant": "#23501e",
+                      "surface-container-highest": "#343535",
+                      "surface-container-high": "#292a2a",
+                      "error": "#ffb4ab",
+                      "inverse-primary": "#006e16",
+                      "inverse-on-surface": "#303031",
+                      "secondary-container": "#23501e",
+                      "on-background": "#e3e2e2",
+                      "on-surface": "#e3e2e2",
+                      "surface-dim": "#121414",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#00530e",
+                      "outline": "#84967e",
+                      "on-primary": "#003907",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "surface-tint": "#00e639",
+                      "surface-container-lowest": "#0d0e0f",
+                      "tertiary": "#fcf8f8",
+                      "tertiary-fixed": "#e5e2e1",
+                      "background": "#121414",
+                      "surface-container-low": "#1b1c1c",
+                      "secondary-fixed-dim": "#a1d494",
+                      "secondary-fixed": "#bcf0ae",
+                      "on-error": "#690005",
+                      "primary-fixed-dim": "#00e639",
+                      "on-tertiary-container": "#626060"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "base": "8px",
+                      "stack-lg": "64px",
+                      "stack-sm": "12px",
+                      "stack-md": "32px",
+                      "margin-mobile": "16px",
+                      "container-max": "1200px",
+                      "margin-desktop": "40px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg": [
+                              "JetBrains Mono"
+                      ],
+                      "display-lg-mobile": [
+                              "JetBrains Mono"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "code-sm": [
+                              "JetBrains Mono"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "code-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .grid-bg {
+            background-image: 
+                linear-gradient(to right, #1A1A1A 1px, transparent 1px),
+                linear-gradient(to bottom, #1A1A1A 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        
+        /* Terminal Cursor Blink */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        /* Ghost Border Glow on Hover */
+        .ghost-border-glow:hover {
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+            border-color: #00ff41;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col grid-bg selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar (Mobile View - Header) -->
+<header class="fixed top-0 w-full z-50 bg-background/80 dark:bg-background/80 backdrop-blur-md border-b border-outline-variant dark:border-outline-variant">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-container-max mx-auto">
+<div class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-primary-fixed dark:text-primary-fixed-dim tracking-tighter">
+                SEC_PHOTO //
+            </div>
+<div class="flex items-center gap-4">
+<button aria-label="Toggle Dark Mode" class="text-primary-fixed dark:text-primary-fixed-dim hover:bg-primary-container/10 transition-colors duration-300 p-2 rounded-full cursor-pointer active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dark_mode</span>
+</button>
+<button aria-label="Open Menu" class="md:hidden text-primary-fixed dark:text-primary-fixed-dim hover:bg-primary-container/10 transition-colors duration-300 p-2 rounded-full cursor-pointer active:scale-95 transition-transform" id="mobile-menu-btn">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+<!-- Desktop Nav (Hidden on Mobile) -->
+<nav class="hidden md:flex gap-8 font-code-sm text-code-sm uppercase tracking-widest">
+<a class="text-primary-fixed dark:text-primary-fixed-dim border-b-2 border-primary-fixed pb-1" href="#">Home</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed pb-1 transition-colors" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed pb-1 transition-colors" href="#">Security</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed pb-1 transition-colors" href="#">Photography</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary-fixed pb-1 transition-colors" href="#">Contact</a>
+</nav>
+</div>
+</header>
+<!-- SideNavBar (Mobile Overlay Menu - Initially Hidden) -->
+<div class="hidden fixed inset-0 z-[60] bg-surface-container-lowest dark:bg-surface-container-lowest shadow-xl flex-col p-margin-mobile divide-y divide-outline-variant overflow-y-auto" id="mobile-menu-overlay">
+<div class="flex justify-between items-center pb-4 pt-2">
+<div>
+<div class="font-display-lg-mobile text-display-lg-mobile text-primary-fixed uppercase tracking-tighter">[SHELL_ACCESS]</div>
+<div class="font-code-sm text-code-sm text-on-surface-variant mt-1">Cybersecurity &amp; Photography</div>
+</div>
+<button class="text-primary-fixed p-2 rounded-full hover:bg-surface-variant transition-colors" id="close-menu-btn">
+<span class="material-symbols-outlined text-2xl">close</span>
+</button>
+</div>
+<nav class="flex flex-col gap-2 py-4"><a class="bg-secondary-container text-on-secondary-container font-bold flex items-center gap-4 p-4 rounded-xl font-code-sm text-code-sm hover:pl-6 transition-all duration-300 tap-highlight-transparent border border-outline-variant" href="#">
+<span class="material-symbols-outlined">home</span> Home
+            </a>
+<a class="text-on-surface-variant bg-surface-container-low flex items-center gap-4 p-4 hover:bg-surface-variant rounded-xl font-code-sm text-code-sm hover:pl-6 transition-all duration-300 tap-highlight-transparent border border-outline-variant" href="#">
+<span class="material-symbols-outlined">person</span> About
+            </a>
+<a class="text-on-surface-variant bg-surface-container-low flex items-center gap-4 p-4 hover:bg-surface-variant rounded-xl font-code-sm text-code-sm hover:pl-6 transition-all duration-300 tap-highlight-transparent border border-outline-variant" href="#">
+<span class="material-symbols-outlined">terminal</span> Security
+            </a>
+<a class="text-on-surface-variant bg-surface-container-low flex items-center gap-4 p-4 hover:bg-surface-variant rounded-xl font-code-sm text-code-sm hover:pl-6 transition-all duration-300 tap-highlight-transparent border border-outline-variant" href="#">
+<span class="material-symbols-outlined">photo_camera</span> Photography
+            </a>
+<a class="text-on-surface-variant bg-surface-container-low flex items-center gap-4 p-4 hover:bg-surface-variant rounded-xl font-code-sm text-code-sm hover:pl-6 transition-all duration-300 tap-highlight-transparent border border-outline-variant" href="#">
+<span class="material-symbols-outlined">mail</span> Contact
+            </a></nav>
+<div class="pt-6 mt-auto">
+<button class="w-full bg-primary-container text-on-primary-fixed py-3 px-6 rounded font-code-sm text-code-sm font-bold uppercase tracking-widest hover:bg-primary-fixed transition-colors">
+                Download CV
+            </button>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-24 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full flex flex-col gap-stack-lg">
+<!-- Hero Section: Terminal Welcome -->
+<section class="mt-stack-sm flex flex-col gap-6">
+<div class="border border-outline-variant rounded bg-surface p-4 flex flex-col gap-4 relative overflow-hidden ghost-border-glow transition-all duration-300">
+<!-- Terminal Decor -->
+<div class="absolute top-0 left-0 w-full h-8 bg-surface-container-high border-b border-outline-variant flex items-center px-3 gap-2">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<div class="w-3 h-3 rounded-full bg-secondary-fixed"></div>
+<div class="w-3 h-3 rounded-full bg-primary-container"></div>
+<div class="ml-auto font-label-caps text-label-caps text-on-surface-variant">bash -- ~</div>
+</div>
+<div class="pt-8 font-code-sm text-code-sm text-primary-fixed-dim flex flex-col gap-2">
+<div class="">
+<span class="text-on-surface-variant">user@sec_photo:~$</span> ./init_session.sh
+                    </div>
+<div class="text-on-surface">
+                        &gt; INITIALIZING SECURE CONNECTION... [OK]
+                    </div>
+<div class="text-on-surface">
+                        &gt; MOUNTING LENS DATA... [OK]
+                    </div>
+<div class="text-on-surface">
+                        &gt; LOAD COMPLETE.
+                    </div>
+<div class="mt-4 font-display-lg-mobile text-display-lg-mobile text-primary-fixed font-bold leading-tight">
+                        SYSTEM READY_ <br>
+<span class="text-on-surface">AWAITING INPUT<span class="cursor-blink inline-block w-3 h-6 bg-primary-fixed ml-1 align-middle"></span></span>
+</div>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Bridging the precision of defensive cybersecurity with the artistic clarity of contemporary photography.
+            </p>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-low border-t border-outline-variant w-full py-stack-md mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-mobile md:px-margin-desktop gap-gutter max-w-container-max mx-auto">
+<div class="font-code-sm text-code-sm text-primary-fixed dark:text-primary-fixed-dim">
+                © 2024 ROOT_USER. ENCRYPTED ACCESS ONLY.
+            </div>
+<div class="flex gap-6 mt-4 md:mt-0 font-code-sm text-code-sm">
+<a class="text-on-surface-variant hover:text-primary-fixed transition-all hover:underline decoration-primary-fixed underline-offset-4" href="#">GitHub</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-all hover:underline decoration-primary-fixed underline-offset-4" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-primary-fixed transition-all hover:underline decoration-primary-fixed underline-offset-4" href="#">Instagram</a>
+</div>
+</div>
+</footer>
+<script>
+        // Mobile Menu Toggle Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const overlay = document.getElementById('mobile-menu-overlay');
+
+            menuBtn.addEventListener('click', () => {
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
+
+            closeBtn.addEventListener('click', () => {
+                overlay.classList.add('hidden');
+                overlay.classList.remove('flex');
+                document.body.style.overflow = '';
+            });
+        });
+    </script>
+
+
+</body></html>

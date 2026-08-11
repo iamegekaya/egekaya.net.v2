@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+import { SITE_URL } from "@/lib/site-url";
+
 export const runtime = "nodejs";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,6 +45,10 @@ function sanitizeBlock(value: unknown) {
   }
 
   return value.trim();
+}
+
+function isContactPayload(value: unknown): value is ContactPayload {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function getClientIp(request: Request) {
@@ -98,14 +104,9 @@ function isAllowedRequestSource(request: Request) {
   try {
     const sourceUrl = new URL(source);
     const requestUrl = new URL(request.url);
-    const configuredAppUrl = process.env.APP_URL?.trim();
-    const allowedHosts = new Set([requestUrl.host]);
+    const allowedOrigins = new Set([requestUrl.origin, SITE_URL]);
 
-    if (configuredAppUrl) {
-      allowedHosts.add(new URL(configuredAppUrl).host);
-    }
-
-    return allowedHosts.has(sourceUrl.host);
+    return allowedOrigins.has(sourceUrl.origin);
   } catch {
     return false;
   }
@@ -191,9 +192,13 @@ export async function POST(request: Request) {
     );
   }
 
-  const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
+  const contentType = request.headers
+    .get("content-type")
+    ?.split(";", 1)[0]
+    ?.trim()
+    .toLowerCase();
 
-  if (!contentType.includes("application/json")) {
+  if (contentType !== "application/json") {
     return NextResponse.json(
       { ok: false, error: "Unsupported content type." },
       { status: 415 },
@@ -225,16 +230,25 @@ export async function POST(request: Request) {
     );
   }
 
-  let payload: ContactPayload;
+  let parsedPayload: unknown;
 
   try {
-    payload = JSON.parse(rawBody) as ContactPayload;
+    parsedPayload = JSON.parse(rawBody) as unknown;
   } catch {
     return NextResponse.json(
       { ok: false, error: "Invalid request body." },
       { status: 400 },
     );
   }
+
+  if (!isContactPayload(parsedPayload)) {
+    return NextResponse.json(
+      { ok: false, error: "Invalid request body." },
+      { status: 400 },
+    );
+  }
+
+  const payload = parsedPayload;
 
   const name = sanitizeLine(payload.name);
   const email = sanitizeLine(payload.email);
@@ -319,6 +333,11 @@ export async function POST(request: Request) {
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
+    // Fail within the request budget instead of leaving a function invocation
+    // waiting on a stalled SMTP handshake or socket.
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 20_000,
     auth: {
       user: gmailUser,
       pass: gmailAppPassword,

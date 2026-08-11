@@ -57,21 +57,22 @@
 
 ---
 
-## Proje 4 — egekaya.net new attempt (bu proje)
+## Proje 4 — egekaya.net yeni site (bu proje)
 
 | Katman | Teknoloji |
 |---|---|
 | Framework | **Next.js 16** (App Router, `typedRoutes`), **React 19**, TypeScript 5.9 |
 | Stil | **Tailwind CSS v4** (`@tailwindcss/postcss`), custom `globals.css` design token'ları |
 | Mail | **nodemailer** (Gmail SMTP 465/TLS) |
+| Animasyon | **GSAP** (yalnızca fotoğraf masonry galerisi) |
 | İkonlar | El yazımı inline SVG (`ui/icon.tsx`) — harici ikon paketi yok |
-| Font | Sistem font stack'i — webfont yok |
+| Font | `next/font` ile self-host edilen Inter + JetBrains Mono |
 | Test/CI | `npm run verify` = build + typecheck + ESLint (`--max-warnings=0`) |
 | Dağıtım | Vercel |
 
-**Mimari:** 10 statik prerender + 2 dinamik route. Tema: "Bit & Aperture" (Material-benzeri token seti, `DESIGN.md`). Fotoğraf galerisi build-time'da `public/images/portfolio/` dizinini okuyor. Güvenlik header'ları `next.config.ts` içinde: CSP (report-only), HSTS preload, COOP, `X-Frame-Options: DENY`, Permissions-Policy.
+**Mimari:** İngilizce ve Türkçe için iki statik route ağacı; yalnızca iletişim API'si istek zamanında çalışıyor. Tema: "Bit & Aperture" (Material-benzeri token seti, `DESIGN.md`). Fotoğraf galerisi build-time'da `public/images/portfolio/` dizinini okuyor. Güvenlik header'ları `next.config.ts` içinde: enforced CSP, HSTS preload, COOP, `X-Frame-Options: DENY`, Permissions-Policy.
 
-**Dikkat:** Bu ağaçta 3. parti runtime bağımlılığı neredeyse yok — `next`, `react`, `react-dom`, `nodemailer` dışında hiçbir şey. Diğer üç projeye kıyasla en yalın stack.
+**Dikkat:** Bu ağaçta 3. parti runtime bağımlılığı kısa tutuluyor — `next`, `react`, `react-dom`, `nodemailer` ve galeri için `gsap`. Diğer üç projeye kıyasla en yalın stack.
 
 ---
 

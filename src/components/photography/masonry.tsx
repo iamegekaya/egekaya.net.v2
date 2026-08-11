@@ -20,7 +20,7 @@ import "./masonry.css";
  * 3. useMedia guards matchMedia so the first render is SSR-safe.
  */
 
-export type MasonryItem = {
+type MasonryItem = {
   id: string;
   img: string;
   url: string;

@@ -13,7 +13,7 @@ import type { Route } from "next";
  * (/about would match [locale]="about") and the usual fix is middleware, which
  * would put an edge function in front of what is currently a fully static site.
  */
-export const LOCALES = ["en", "tr"] as const;
+const LOCALES = ["en", "tr"] as const;
 
 export type Locale = (typeof LOCALES)[number];
 
@@ -23,11 +23,6 @@ export const DEFAULT_LOCALE: Locale = "en";
 export const HTML_LANG: Record<Locale, string> = {
   en: "en",
   tr: "tr",
-};
-
-export const LOCALE_LABEL: Record<Locale, string> = {
-  en: "EN",
-  tr: "TR",
 };
 
 /**

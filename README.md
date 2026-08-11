@@ -11,13 +11,14 @@ a terminal-styled theme ("Bit & Aperture", documented in `DESIGN.md`).
 - **TypeScript 5.9**
 - **Tailwind CSS 4** (via `@tailwindcss/postcss`), with the palette and custom
   classes in `src/app/globals.css`
+- **GSAP 3** for the photography masonry layout animation
 - **Nodemailer 9** for contact form delivery
 
-There is no UI kit, icon package, animation library, or webfont: icons are
-hand-written inline SVG in `src/components/ui/icon.tsx`, type uses the system
-font stack, and the only runtime dependencies are `next`, `react`, `react-dom`
-and `nodemailer`. Keeping that list short is what lets the Content Security
-Policy stay same-origin (see below).
+There is no UI kit or icon package: icons are hand-written inline SVG in
+`src/components/ui/icon.tsx`. Inter and JetBrains Mono are loaded through
+`next/font`, which self-hosts the generated font assets. GSAP is confined to
+the gallery. The short runtime dependency list lets the Content Security Policy
+stay same-origin (see below).
 
 ## Pages
 
@@ -26,10 +27,13 @@ Policy stay same-origin (see below).
 | `/` | Terminal hero with a typed `whoami`, plus cards linking to the two sections |
 | `/about` | Biography, education timeline, and tech stack |
 | `/cyber-security` | Security principles, systems used, infrastructure architecture, experience |
+| `/cyber-security/omnisight` | OmniSight architecture and privacy-boundary write-up |
+| `/cyber-security/silent-ingest-failure` | Incident analysis and lessons learned |
 | `/photography` | Photo essay, current gear, and the portfolio gallery |
 | `/contact` | Contact form |
 | `/api/contact` | `POST` endpoint that validates a submission and sends it by mail |
-| `/api/health` | `GET` JSON health endpoint |
+| `/tr/*` | Turkish versions of every public page above |
+| `/llms.txt` | Generated link-first summary for AI agents |
 
 `robots.txt`, `sitemap.xml`, and the OpenGraph/Twitter card images are generated
 from `src/app/robots.ts`, `sitemap.ts`, `opengraph-image.tsx`, and
@@ -38,10 +42,11 @@ from `src/app/robots.ts`, `sitemap.ts`, `opengraph-image.tsx`, and
 ## Project Structure
 
 ```
-src/app/(site)/     page routes sharing the site chrome (nav, footer)
-src/app/api/        contact and health route handlers
+src/app/(en)/       English routes and root layout
+src/app/(tr)/tr/    Turkish routes under /tr and their root layout
+src/app/api/        contact route handler
 src/app/globals.css design tokens, custom classes, and the Tailwind entry
-src/components/     terminal-hero, site-nav, masonry-gallery, contact-form,
+src/components/     terminal-hero, site-nav, masonry, contact-form,
                     theme-toggle, site-footer, and the ui/ primitives
 src/lib/            cyber-security-content.ts (page copy), typography.ts
                     (text-style tokens), seo-image.ts (shared card metadata)
@@ -58,7 +63,6 @@ Vercel project settings; there is no `.env` file in this repository.
 | `GMAIL_USER` | Gmail address that sends and receives contact form mail |
 | `GMAIL_APP_PASSWORD` | Gmail app password for SMTP auth |
 | `APP_URL` | Site origin; also accepted as a valid form submission source |
-| `APP_NAME` | Display name returned by `/api/health` |
 
 Without `GMAIL_USER` and `GMAIL_APP_PASSWORD`, `POST /api/contact` still runs
 its full validation chain but returns `500` at the delivery step. That is the
@@ -105,9 +109,24 @@ Response headers are set in `next.config.ts` for every route:
 `POST /api/contact` is the only endpoint that accepts user input. It enforces a
 32 KB body ceiling while streaming, a JSON content type, a same-origin
 `Origin`/`Referer` check, a honeypot field, a minimum form dwell time, per-IP
-and global rate limits, per-field length caps, CRLF stripping on the header-bound
-fields, and HTML escaping in the mail body. Failures return the same opaque
-message whether the cause is a misconfiguration or a delivery error.
+and global best-effort in-memory limits, per-field length caps, CRLF stripping
+on header-bound fields, and HTML escaping in the mail body. Vercel Functions
+scale across instances and can restart, so the in-memory counters are not a
+deployment-wide rate limiter. Configure a Vercel WAF rate-limit rule for
+`POST /api/contact` before production traffic.
+
+## Vercel Deployment
+
+- Import this repository as the project root; the older sibling site is not a
+  build input.
+- Use Node.js 24 (also pinned in `package.json`).
+- Set `APP_URL` in Production to `https://egekaya.net`.
+- Keep `GMAIL_USER` and `GMAIL_APP_PASSWORD` server-only. Set them in Preview
+  only if preview deployments should be able to send real email.
+- Apply environment-variable changes by redeploying; existing deployments do
+  not receive updated values.
+- Add a WAF rate-limit rule for `POST /api/contact` because application-memory
+  counters are local to a function instance.
 
 ## Photography Gallery
 

@@ -26,7 +26,7 @@ const FALLOFF_CURVES = {
   sharp: (p: number) => p * p * p,
 } as const;
 
-export type LineSidebarProps = {
+type LineSidebarProps = {
   items: string[];
   accentColor?: string;
   textColor?: string;

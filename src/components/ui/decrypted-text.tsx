@@ -36,7 +36,7 @@ const SR_ONLY_STYLE: React.CSSProperties = {
 
 const DEFAULT_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+";
 
-export type DecryptedTextProps = {
+type DecryptedTextProps = {
   text: string;
   speed?: number;
   maxIterations?: number;

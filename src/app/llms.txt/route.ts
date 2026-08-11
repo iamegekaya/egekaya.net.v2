@@ -23,7 +23,7 @@ function buildLlmsTxt() {
     "",
     "> Personal site of Ege Kaya: information security work and photography.",
     "",
-    "Ege Kaya is an information security student at Yeditepe University in Turkey, working on",
+    "Ege Kaya is an information security graduate of Yeditepe University in Turkey, working on",
     "self-hosted security tooling and defensive engineering. The security section carries",
     "project and incident write-ups; the photography section is a separate portfolio.",
     "",

@@ -47,7 +47,7 @@ export default function IncidentView({ dict, locale }: { dict: Dictionary; local
             {t.backToProfile}
           </Link>
 
-          <h1 className={`${TEXT_DISPLAY_LG} text-primary-fixed`}>{t.heading}</h1>
+          <h1 className={`${TEXT_DISPLAY_LG} break-words text-primary-fixed`}>{t.heading}</h1>
 
           <p className="max-w-3xl font-sans text-[17px] leading-relaxed text-on-surface-variant">
             {t.intro}
@@ -149,7 +149,7 @@ export default function IncidentView({ dict, locale }: { dict: Dictionary; local
 
         <nav className="border-t border-outline-variant pt-6">
           <Link
-            href="/cyber-security"
+            href={localizePath("/cyber-security", locale)}
             className="rounded-sm border border-outline-variant px-4 py-3 font-mono text-[14px] text-on-surface transition-colors hover:border-primary-fixed hover:text-primary-fixed"
           >
             {t.backLink}

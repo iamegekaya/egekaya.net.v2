@@ -14,7 +14,6 @@ type FormState = {
 
 type SubmissionState = "idle" | "success" | "error";
 
-
 const INITIAL_FORM: FormState = {
   name: "",
   email: "",
@@ -94,8 +93,12 @@ export default function ContactForm({ dict }: { dict: Dictionary }) {
         </label>
 
         <div>
-          <label className={FIELD_LABEL_CLASS_NAME}>{t.nameLabel}</label>
+          <label htmlFor="contact-name" className={FIELD_LABEL_CLASS_NAME}>
+            {t.nameLabel}
+          </label>
           <input
+            id="contact-name"
+            name="name"
             type="text"
             value={form.name}
             onChange={(event) => {
@@ -109,8 +112,12 @@ export default function ContactForm({ dict }: { dict: Dictionary }) {
         </div>
 
         <div>
-          <label className={FIELD_LABEL_CLASS_NAME}>{t.emailLabel}</label>
+          <label htmlFor="contact-email" className={FIELD_LABEL_CLASS_NAME}>
+            {t.emailLabel}
+          </label>
           <input
+            id="contact-email"
+            name="email"
             type="email"
             value={form.email}
             onChange={(event) => {
@@ -124,8 +131,12 @@ export default function ContactForm({ dict }: { dict: Dictionary }) {
         </div>
 
         <div>
-          <label className={FIELD_LABEL_CLASS_NAME}>{t.messageLabel}</label>
+          <label htmlFor="contact-message" className={FIELD_LABEL_CLASS_NAME}>
+            {t.messageLabel}
+          </label>
           <textarea
+            id="contact-message"
+            name="message"
             value={form.message}
             onChange={(event) => {
               setForm((current) => ({ ...current, message: event.target.value }));

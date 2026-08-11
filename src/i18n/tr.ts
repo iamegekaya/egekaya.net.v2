@@ -27,7 +27,6 @@ export const tr: Dictionary = {
     downloadCv: "CV'yi indir",
     switchToLight: "Açık temaya geç",
     switchToDark: "Koyu temaya geç",
-    languageLabel: "Dil",
     switchToTurkish: "Türkçe'ye geç",
     switchToEnglish: "Switch to English",
   },
@@ -65,7 +64,7 @@ export const tr: Dictionary = {
     metaDescription:
       "Ege Kaya'nın kişisel geçmişi, eğitimi ve ilgi alanları — 2003 Lüleburgaz doğumlu, bilgi güvenliği ve fotoğrafçılıkla uğraşıyor, İstanbul'da yaşıyor.",
     heading: "whoami",
-    status: "[DURUM]: BİLGİ GÜVENLİĞİ LİSANS — YEDİTEPE ÜNİVERSİTESİ, 2022–HÂLEN",
+    status: "[DURUM]: BİLGİ GÜVENLİĞİ LİSANS — YEDİTEPE ÜNİVERSİTESİ, 2022–2026",
     biographyHeading: "> ./biography.sh",
     biographyOne:
       "Merhaba! Adım Ege, 22 yaşındayım. 11 Temmuz 2003'te Kırklareli'nin Lüleburgaz ilçesinde doğdum. Sokakta futbol oynayarak, kâğıt ve misket oynayarak büyüyen son kuşağın bir parçasıyım.",
@@ -73,7 +72,6 @@ export const tr: Dictionary = {
       "İlk bilgisayarımla 2011'de tanıştım; o günden beri teknoloji hayatımın ayrılmaz bir parçası. Teknolojiye olan ilgim üniversitede derinleşti; kısacası teknolojiyle uğraşmayı, bir şeyler üretmeyi ve her gün yeni bir şey öğrenmeyi seviyorum. Bunun dışında Formula 1 takip ediyorum, Fenerbahçe tutuyorum, şehir ve müze gezmeyi seviyorum.",
     educationHeading: "Eğitim Geçmişi",
     education: {
-      present: "2022 — Hâlen",
       degree: "Bilgi Güvenliği Lisans",
       prep: "Hazırlık",
       highSchool: "Lise",
@@ -421,17 +419,5 @@ export const tr: Dictionary = {
       errorLabel: "Hata:",
       genericError: "Mesajınız gönderilirken bir sorun oluştu. Lütfen birazdan tekrar deneyin.",
     },
-  },
-
-  notFound: {
-    title: "404 // ERROR_NOT_FOUND",
-    warning: "> Sistem uyarısı: alt yordamda kritik istisna",
-    accessDenied: "Erişim reddedildi:",
-    accessDeniedRest: "istenen düğüm bu alt ağda mevcut değil.",
-    trace: "> TRACE: yol çözümleniyor...",
-    traceFailed: "[BAŞARISIZ]",
-    reason: "> SEBEP: ölü bağlantı veya yetkisiz erişim vektörü.",
-    returnToRoot: "Köke dön",
-    contact: "İletişim",
   },
 };

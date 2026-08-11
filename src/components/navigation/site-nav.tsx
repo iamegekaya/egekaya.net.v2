@@ -147,12 +147,20 @@ export default function SiteNav({ locale, dict }: { locale: Locale; dict: Dictio
               );
             })}
             <LanguageToggle locale={locale} dict={dict} className="ml-4" />
-            <ThemeToggle className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-surface-variant" />
+            <ThemeToggle
+              switchToDarkLabel={dict.nav.switchToDark}
+              switchToLightLabel={dict.nav.switchToLight}
+              className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-surface-variant"
+            />
           </nav>
 
           <div className="flex items-center gap-2 md:hidden">
             <LanguageToggle locale={locale} dict={dict} />
-            <ThemeToggle className="p-2" />
+            <ThemeToggle
+              switchToDarkLabel={dict.nav.switchToDark}
+              switchToLightLabel={dict.nav.switchToLight}
+              className="p-2"
+            />
             <button
               ref={toggleRef}
               type="button"

@@ -6,7 +6,15 @@ import { MoonIcon, SunIcon } from "@/components/ui/icon";
 
 type Theme = "dark" | "light";
 
-export default function ThemeToggle({ className = "" }: { className?: string }) {
+export default function ThemeToggle({
+  switchToDarkLabel,
+  switchToLightLabel,
+  className = "",
+}: {
+  switchToDarkLabel: string;
+  switchToLightLabel: string;
+  className?: string;
+}) {
   // Starts "dark" to match the server-rendered markup (root layout's inline
   // script sets the real value on <html> before paint, but React doesn't see
   // that) -- synced from the DOM in the effect below so the icon never lies
@@ -47,7 +55,7 @@ export default function ThemeToggle({ className = "" }: { className?: string }) 
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
+      aria-label={theme === "light" ? switchToDarkLabel : switchToLightLabel}
       className={`text-on-surface-variant hover:text-primary-fixed active:scale-95 transition-colors ${className}`.trim()}
     >
       {theme === "light" ? <MoonIcon className="h-5 w-5" /> : <SunIcon className="h-5 w-5" />}

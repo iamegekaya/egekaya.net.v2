@@ -41,7 +41,7 @@ export default function SecurityView({ dict, locale }: { dict: Dictionary; local
 
   return (
     <main className="site-page">
-      <SectionSidebar sections={securitySections(dict)} />
+      <SectionSidebar ariaLabel={dict.sidebar.onThisPage} sections={securitySections(dict)} />
       <div className="site-page-inner flex flex-col gap-10">
         <header className="flex flex-col gap-4">
           <h1 className={`${TEXT_DISPLAY_LG} text-primary-fixed`}>

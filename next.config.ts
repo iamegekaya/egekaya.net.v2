@@ -54,6 +54,17 @@ const contentSecurityPolicy = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   typedRoutes: true,
+  turbopack: {
+    // This app is nested inside another project directory. Pinning the root
+    // prevents Turbopack from discovering or watching the parent project's
+    // lockfile and makes the local build match Vercel's configured app root.
+    root: process.cwd(),
+  },
+  experimental: {
+    // Multiple root layouts cannot compose a single app/not-found page.
+    // Next 16's global 404 convention is designed for exactly this shape.
+    globalNotFound: true,
+  },
   async headers() {
     return [
       {

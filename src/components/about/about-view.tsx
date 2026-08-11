@@ -16,7 +16,10 @@ import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD } from "@/lib/typography";
 function educationTimeline(dict: Dictionary) {
   const e = dict.about.education;
   return [
-    { date: e.present, title: e.degree, detail: e.yeditepe, current: true },
+    // The degree row's date lives here with the others now. It was the one
+    // date in the dictionary, and only because "Present"/"Hâlen" needed
+    // translating; a closed range does not.
+    { date: "2022 — 2026", title: e.degree, detail: e.yeditepe, highlight: true },
     { date: "2021 — 2022", title: e.prep, detail: e.yeditepe },
     { date: "2019 — 2021", title: e.highSchool, detail: e.bahcesehir },
     { date: "2017 — 2019", title: e.highSchool, detail: e.anatolian },
@@ -63,7 +66,7 @@ export default function AboutView({ dict, locale }: { dict: Dictionary; locale: 
 
   return (
     <main className="site-page">
-      <SectionSidebar sections={aboutSections(dict)} />
+      <SectionSidebar ariaLabel={dict.sidebar.onThisPage} sections={aboutSections(dict)} />
       <div className="site-page-inner">
         <header className="mb-10">
           <h1 className={`${TEXT_DISPLAY_LG} text-primary-fixed mb-4`}>
@@ -99,11 +102,11 @@ export default function AboutView({ dict, locale }: { dict: Dictionary; locale: 
                   <div key={item.date} className="relative">
                     <div
                       className={`absolute -left-[31px] top-1 h-4 w-4 rounded-full border-4 border-surface ${
-                        item.current ? "bg-primary-fixed" : "bg-surface-variant"
+                        item.highlight ? "bg-primary-fixed" : "bg-surface-variant"
                       }`}
                     />
                     <h3
-                      className={`font-mono text-[14px] mb-1 ${item.current ? "text-primary-fixed" : "text-on-surface-variant"}`}
+                      className={`font-mono text-[14px] mb-1 ${item.highlight ? "text-primary-fixed" : "text-on-surface-variant"}`}
                     >
                       {item.date}
                     </h3>

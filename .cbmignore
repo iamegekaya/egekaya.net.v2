@@ -1,0 +1,39 @@
+# Secrets and private runtime state
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.sql
+
+# VCS, dependencies, generated output, and provider state
+.git/
+node_modules/
+.next/
+dist/
+out/
+coverage/
+.vercel/
+.turbo/
+*.tsbuildinfo
+
+# Personal portfolio media and exported browser captures
+public/images/portfolio/
+public/**/*.avif
+public/**/*.gif
+public/**/*.jpeg
+public/**/*.jpg
+public/**/*.png
+public/**/*.webp
+public/**/*.heic
+public/**/*.tif
+public/**/*.tiff
+public/**/*.raw
+public/**/*.dng
+*.html

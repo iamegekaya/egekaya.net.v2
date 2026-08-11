@@ -1,6 +1,8 @@
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
 
+import { SITE_URL } from "@/lib/site-url";
+
 /**
  * The public route list, shared by /sitemap.xml and /llms.txt.
  *
@@ -13,7 +15,7 @@ import { join } from "node:path";
  * happened to be remembered; a list nobody checks is a list that is already
  * wrong.
  */
-export type SiteRoute = {
+type SiteRoute = {
   path: string;
   /** Sitemap priority, 0-1. */
   priority: number;
@@ -72,10 +74,8 @@ export const SITE_ROUTES: SiteRoute[] = [
   },
 ];
 
-export const SITE_BASE_URL = (process.env.APP_URL ?? "https://egekaya.net").replace(/\/$/, "");
-
 export function absoluteUrl(path: string) {
-  return `${SITE_BASE_URL}${path === "/" ? "" : path}`;
+  return `${SITE_URL}${path === "/" ? "" : path}`;
 }
 
 /**

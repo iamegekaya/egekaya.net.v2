@@ -5,7 +5,6 @@ import DecryptedText from "@/components/ui/decrypted-text";
 import Masonry from "@/components/photography/masonry";
 import SectionSidebar from "@/components/navigation/section-sidebar";
 import TerminalWindow from "@/components/ui/terminal-window";
-import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n";
 import { readJpegSize } from "@/lib/jpeg-size";
 import { TEXT_DISPLAY_LG, TEXT_HEADLINE_MD, TEXT_LABEL_CAPS } from "@/lib/typography";
@@ -85,12 +84,13 @@ function photographySections(dict: Dictionary) {
   ];
 }
 
-export default function PhotographyView({ dict }: { dict: Dictionary; locale?: Locale }) {
+export default function PhotographyView({ dict }: { dict: Dictionary }) {
   const t = dict.photography;
+  const photos = portfolioPhotos(dict);
 
   return (
     <main className="site-page">
-      <SectionSidebar sections={photographySections(dict)} />
+      <SectionSidebar ariaLabel={dict.sidebar.onThisPage} sections={photographySections(dict)} />
       <div className="site-page-inner flex flex-col gap-10">
         <header className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
@@ -138,9 +138,9 @@ export default function PhotographyView({ dict }: { dict: Dictionary; locale?: L
           <h2 className={`${TEXT_HEADLINE_MD} text-on-surface border-b border-outline-variant pb-2`}>
             {t.galleryHeading}
           </h2>
-          {portfolioPhotos.length ? (
+          {photos.length ? (
             <Masonry
-              items={portfolioPhotos(dict)}
+              items={photos}
               ease="power3.out"
               duration={0.6}
               stagger={0.05}

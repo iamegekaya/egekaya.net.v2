@@ -185,7 +185,7 @@ export default function OmniSightView({ dict, locale }: { dict: Dictionary; loca
 
         <nav className="flex flex-wrap gap-3 border-t border-outline-variant pt-6">
           <Link
-            href="/cyber-security"
+            href={localizePath("/cyber-security", locale)}
             className="rounded-sm border border-outline-variant px-4 py-3 font-mono text-[14px] text-on-surface transition-colors hover:border-primary-fixed hover:text-primary-fixed"
           >
             {t.backLink}

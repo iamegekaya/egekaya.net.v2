@@ -15,7 +15,7 @@ import LineSidebar from "./line-sidebar";
  * Hidden below xl. Under 1280px there is no margin to sit in without
  * overlapping the 1200px content column.
  */
-export type SidebarSection = {
+type SidebarSection = {
   id: string;
   label: string;
 };
@@ -23,7 +23,13 @@ export type SidebarSection = {
 /** Matches the fixed header height so a scrolled-to heading is not hidden by it. */
 const HEADER_OFFSET = 96;
 
-export default function SectionSidebar({ sections }: { sections: SidebarSection[] }) {
+export default function SectionSidebar({
+  sections,
+  ariaLabel,
+}: {
+  sections: SidebarSection[];
+  ariaLabel: string;
+}) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const scrollToSection = useCallback(
@@ -84,7 +90,7 @@ export default function SectionSidebar({ sections }: { sections: SidebarSection[
     <div className="pointer-events-none fixed top-1/2 left-[calc(50%-780px)] z-30 hidden -translate-y-1/2 min-[1600px]:block">
       <div className="pointer-events-auto">
         <LineSidebar
-          aria-label="On this page"
+          aria-label={ariaLabel}
           items={sections.map((section) => section.label)}
           activeIndex={activeIndex}
           onItemClick={scrollToSection}

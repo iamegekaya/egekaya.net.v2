@@ -30,4 +30,4 @@ const openGraphSiteDefaults = {
   locale: "en_US",
 } satisfies Pick<NonNullable<Metadata["openGraph"]>, "siteName" | "locale">;
 
-export { OG_ALT, openGraphImage, openGraphSiteDefaults, twitterImage };
+export { openGraphImage, openGraphSiteDefaults, twitterImage };
