@@ -110,6 +110,18 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // Stable public URLs embedded outside the site (the email-signature
+        // photo). Not `immutable`: the path is permanent, so a replaced file
+        // must reach clients within a day rather than never.
+        source: "/assets/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
+      },
     ];
   },
 };
